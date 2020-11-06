@@ -15,6 +15,10 @@ router.get("/", function(req, res, next) {
     res.render('addFlat', { title: 'Express' });
    // res.json(req.body);
   });
+  router.get('/sidebar', function(req, res, next) {
+    res.render('sidebar', { title: 'Express' });
+   // res.json(req.body);
+  });
   
  
 module.exports = router;
