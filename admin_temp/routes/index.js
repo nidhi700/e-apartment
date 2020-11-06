@@ -15,6 +15,26 @@ router.get("/", function(req, res, next) {
     res.render('addFlat', { title: 'Express' });
    // res.json(req.body);
   });
+  router.get('/addtenant', function(req, res, next) {
+    res.render('addTenant', { title: 'Express' });
+   // res.json(req.body);
+  });
+  router.get('/viewflatmembers', function(req, res, next) {
+    res.render('view_flat_members', { title: 'Express' });
+   // res.json(req.body);
+  });
+  router.get('/viewflatdetails', function(req, res, next) {
+    res.render('view_flat_details', { title: 'Express' });
+   // res.json(req.body);
+  });
+  router.get('/viewcomplaints', function(req, res, next) {
+    res.render('viewComplaints', { title: 'Express' });
+   // res.json(req.body);
+  });
+  router.get('/festivalDetails', function(req, res, next) {
+    res.render('festival_details', { title: 'Express' });
+   // res.json(req.body);
+  });
   router.get('/sidebar', function(req, res, next) {
     res.render('sidebar', { title: 'Express' });
    // res.json(req.body);
