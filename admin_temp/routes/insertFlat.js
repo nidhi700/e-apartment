@@ -6,15 +6,15 @@ router.get('/addflat',(req, res, next) => {
 });
 
 router.post("/insertFlat", (req, res, next) => {
-    signin.isauth1(req.body, (err, row) => {
+    // console.log(req.body);
+    signin.addFlat(req.body, (err, row) => {
         if (err) {
             res.send(err);
             console.log("err");
         }
         else {
-            var numrows = row.length;
-            if (numrows > 0) {
-                console.log("ans");       
+            if (row) {
+                    console.log("ans");       
                    // res.json(req.body);
                     res.redirect('/index');
             }
