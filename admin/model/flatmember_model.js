@@ -7,7 +7,10 @@ var item = {
     },
     getFlatNo:function (callback) {
         return db.query('select Flat_No from flat',callback);
-    }
+    },
+    viewmember:function(callback){
+        return db.query("select * from member",callback);   
+    },
 };
 
 module.exports = item;

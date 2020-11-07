@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var signin = require("../model/signin_model");
-var flat = require("../model/flat_model");
+var flat = require("../model/flatmember_model");
 var db=require('../dbconnection');
 
 var da="";

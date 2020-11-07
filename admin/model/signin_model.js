@@ -4,7 +4,7 @@ var item = {
     isauth1:function(item, callback) {
         
         console.log("inside model");
-        return db.query('select * from login where Login_ID = ? and  Password = ? ', [item.email, item.password], callback);
+        return db.query('select * from member where isSecretory = "1" and Login_ID = ? and  Password = ? ', [item.email, item.password], callback);
     }
 };
 
