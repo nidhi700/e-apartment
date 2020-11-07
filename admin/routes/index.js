@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var signin = require("../model/signin_model");
-var flat = require("../model/flatmember_model");
+var flat = require("../model/flat_model");
+var flatmember = require("../model/flatmember_model");
 var db=require('../dbconnection');
 
 var da="";
@@ -25,7 +26,7 @@ router.get("/", function(req, res, next) {
   });
   
   router.get('/viewflatmembers', function(req, res, next) {
-    flat.viewmember(function(err,rows){
+    flatmember.viewmember(function(err,rows){
       console.log("inside index");
         if(err){
           res.json(err);
