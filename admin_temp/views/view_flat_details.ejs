@@ -15,28 +15,36 @@
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
                                             <tr>
-                                                <th>sr no</th>
-                                                <th>Wing Name</th>
-                                                <th>Flat count</th>
-                                                <th>Floor count</th>
-                                                <th class="text-right">Lift Count</th>
-                                                <th class="text-right">Camera Count</th>                                                
+                                                <th>Apt Name</th>
+                                                <th>Lift Count</th>
+                                                <th>Floor Count</th>
+                                                <th>Flat Count</th>
+                                                <th>Camera Count</th>
+                                                                                              
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <%%>
-                                            <a href="#">
+                                            <%
+                                            if(data.length!=0){
+                                            var i=1;
+                                            data.forEach(function(res){
+                                            %>
+                                                <a href="#">
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>100398</td>
-                                                    <td>iPhone</td>
-                                                    <td class="text-right">$999.00</td>
-                                                    <td class="text-right">1</td>
-                                                    <td class="text-right">$999.00</td>
+                                                    <td><%=res.Apt_Name %></td>   
+                                                    <td class="text-right"><%=res.Lift_Count %></td>                                 
+                                                    <td class="text-right"><%=res.Floor_Count %></td>                                 
+                                                    <td class="text-right"><%=res.Flat_Count %></td>                                 
+                                                    <td class="text-right"><%=res.Camera_Count %></td>                                 
                                                     
                                                 </tr>
                                             </a>
-                                            <%%>
+                                            <%}) %>
+                                            <% } else{ %>
+                                                <tr>
+                                                    <td colspan="5">No Data Found</td>
+                                                </tr>
+                                            <% } %>
                                         </tbody>
                                     </table>
 								</div>

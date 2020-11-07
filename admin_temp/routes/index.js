@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var signin = require("../model/signin_model");
+var flat = require("../model/flat_model");
+var db=require('../dbconnection');
+
+var da="";
 
 /* GET home page. */
 router.get('/index', function(req, res, next) {
@@ -20,13 +24,36 @@ router.get("/", function(req, res, next) {
    // res.json(req.body);
   });
   router.get('/viewflatmembers', function(req, res, next) {
-    res.render('view_flat_members', { title: 'Express' });
+    flat.viewmember(function(err,rows){
+      console.log("inside indsx");
+        if(err){
+          res.json(err);
+          res.render('view_flat_members',{data:rows});
+        }
+        else{
+           // da=JSON.stringify(rows);
+            res.render('view_flat_members',{data:rows});
+        }
+    });
    // res.json(req.body);
   });
+ 
+  
   router.get('/viewflatdetails', function(req, res, next) {
-    res.render('view_flat_details', { title: 'Express' });
-   // res.json(req.body);
-  });
+    //   res.render('Venue');
+       flat.viewflat(function(err,rows){
+          console.log("inside indsx");
+            if(err){
+              res.json(err);
+              res.render('view_flat_details',{data:rows});
+            }
+            else{
+               // da=JSON.stringify(rows);
+                res.render('view_flat_details',{data:rows});
+            }
+        });
+      });
+      
   router.get('/viewcomplaints', function(req, res, next) {
     res.render('viewComplaints', { title: 'Express' });
    // res.json(req.body);
