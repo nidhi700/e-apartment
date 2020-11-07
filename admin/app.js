@@ -7,7 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var signinRouter = require('./routes/signin_route');
-var addFlatRouter = require('./routes/flat_route');
+var flatRouter = require('./routes/flat_route');
+var flatMemberRouter = require('./routes/flatmember_route');
 
 
 var app = express();
@@ -26,7 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(indexRouter);
 app.use(usersRouter);
 app.use(signinRouter);
-app.use(addFlatRouter);
+app.use(flatRouter);
+app.use(flatMemberRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,13 +1,11 @@
-var signin = require("../model/flat_model");
+var flat = require("../model/flat_model");
 var express = require("express");
 var router = express.Router();
 
-router.get('/addflat',(req, res, next) => {
-});
 
 router.post("/insertFlat", (req, res, next) => {
     // console.log(req.body);
-    signin.addFlat(req.body, (err, row) => {
+    flat.addFlat(req.body, (err, row) => {
         if (err) {
             res.send(err);
             console.log("err");

@@ -7,6 +7,7 @@ var db=require('../dbconnection');
 
 var da="";
 
+
 /* GET home page. */
 router.get('/index', function(req, res, next) {
   res.render('index');
@@ -20,10 +21,19 @@ router.get("/", function(req, res, next) {
     res.render('addFlat');
    // res.json(req.body);
   });
-  router.get('/addmember', function(req, res, next) {
-    res.render('addMember');
-   // res.json(req.body);
-  });
+  
+  router.get('/addmember',(req, res, next) => {
+    // console.log("in get flat number");
+    flatmember.getFlatNo((err, row) => {
+        if (err) {
+            res.json(err);
+            res.render('addMember',{data:row});
+        }
+        else {
+            res.render('addMember',{data:row});
+        }
+    });
+});
   
   router.get('/viewflatmembers', function(req, res, next) {
     flatmember.viewmember(function(err,rows){
@@ -39,7 +49,23 @@ router.get("/", function(req, res, next) {
     });
   });
  
-  
+  router.get('/deleteflatmember/:id?', function(req, res, next) {
+    // console.log(req.params.id);
+    flatmember.deleteMember(req.params.id, (err,rows) => {
+      console.log("inside delete");
+        if(err){
+          res.json(err);
+          alert("hi");
+          res.redirect('/viewflatmembers');
+        }
+        else{
+           // da=JSON.stringify(rows);
+            res.redirect('/viewflatmembers');
+        }
+    });
+  });
+ 
+
   router.get('/viewflatdetails', function(req, res, next) {
     //   res.render('Venue');
        flat.viewflat(function(err,rows){
