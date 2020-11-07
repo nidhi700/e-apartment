@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<body class="animsition">
+    <%- include('sidebar'); %>
+        <div class="page-container">
+            <div class="main-content">                
+                    <div class="container-fluid">
+                                <div class="table-data__tool-right" align="right">
+                                    <a href="addflat"><button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                        <i class="zmdi zmdi-plus"></i>add flats</button></a>
+                                </div>
+
+                                <br>
+                                <div class="table-responsive table--no-card m-b-30">
+                                    <table class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>Apt Name</th>
+                                                <th>Lift Count</th>
+                                                <th>Floor Count</th>
+                                                <th>Flat Count</th>
+                                                <th>Camera Count</th>
+                                                                                              
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%
+                                            if(data.length!=0){
+                                            var i=1;
+                                            data.forEach(function(res){
+                                            %>
+                                                <a href="#">
+                                                <tr>
+                                                    <td><%=res.Apt_Name %></td>   
+                                                    <td class="text-right"><%=res.Lift_Count %></td>                                 
+                                                    <td class="text-right"><%=res.Floor_Count %></td>                                 
+                                                    <td class="text-right"><%=res.Flat_Count %></td>                                 
+                                                    <td class="text-right"><%=res.Camera_Count %></td>                                 
+                                                    
+                                                </tr>
+                                            </a>
+                                            <%}) %>
+                                            <% } else{ %>
+                                                <tr>
+                                                    <td colspan="5">No Data Found</td>
+                                                </tr>
+                                            <% } %>
+                                        </tbody>
+                                    </table>
+								</div>
+                            </div>
+                        </div>
+                    </div>
+               
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="vendor/slick/slick.min.js">
+    </script>
+    <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/animsition/animsition.min.js"></script>
+    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
+<!-- end document-->
