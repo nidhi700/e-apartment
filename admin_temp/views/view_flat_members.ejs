@@ -15,28 +15,38 @@
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
                                             <tr>
-                                                <th>sr no</th>
-                                                <th>Name</th>
-                                                <th>House no.</th>
-                                                <th class="text-right">Tenant/Owner</th>
-                                                <th class="text-right">People count</th>
-                                                <th>BHK</th>
+                                                <th>Member id</th>
+                                                <th>Flat No</th>
+                                                <th>Full Name</th>
+                                                <th>Flat Members</th>
+                                                <th>Contact No</th>
+                                                <th>Role</th>
                                             </tr>
                                         </thead>
                                          <tbody>
-                                            <%%>
-                                            <a href="#">
+                                            <%
+                                            if(data.length!=0){
+                                            var i=1;
+                                            data.forEach(function(res){
+                                            %>
+                                                <a href="#">
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>100398</td>
-                                                    <td>iPhone</td>
-                                                    <td class="text-right">$999.00</td>
-                                                    <td class="text-right">1</td>
-                                                    <td class="text-right">$999.00</td>
+                                                    <td><%=res.member_id %></td>   
+                                                    <td><%=res.Flat_No %></td>                                 
+                                                    <td><%=res.Full_Name %></td>                                 
+                                                    <td><%=res.Flat_Members %></td>                                 
+                                                    <td><%=res.Contact_No %></td>    
+                                                    <td><%=res.Role %></td>    
+                                                
                                                     
                                                 </tr>
                                             </a>
-                                            <%%>
+                                            <%}) %>
+                                            <% } else{ %>
+                                                <tr>
+                                                    <td colspan="6">No Data Found</td>
+                                                </tr>
+                                            <% } %>
                                         </tbody>
                                     </table>
 								</div>                     
