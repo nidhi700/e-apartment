@@ -12,6 +12,8 @@ var addFlatRouter = require('./routes/flat_route');
 var addFlatmemberRouter = require('./routes/flatmember_route');
 var addApartmentRouter = require('./routes/apartment_route');
 
+var addFestival = require('./routes/festival_route');
+
 
 
 var app = express();
@@ -34,6 +36,8 @@ app.use(signinRouter);
 app.use(addFlatRouter);
 app.use(addFlatmemberRouter);
 app.use(addApartmentRouter);
+
+app.use(addFestival);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
