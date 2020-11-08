@@ -13,32 +13,33 @@
                                 <br>
                                 <div class="table-responsive table--no-card m-b-30">
                                     <table class="table table-borderless table-striped table-earning">
-                                        <thead>
+                                        <thead align="center">
                                             <tr>
-                                                <th>Apt Name</th>
-                                                <th>Lift Count</th>
-                                                <th>Floor Count</th>
-                                                <th>Flat Count</th>
-                                                <th>Camera Count</th>
-                                                                                              
+                                                <th>Flat Number</th>
+                                                <th>BHK</th> 
+                                                <th>Action</th>                           
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody align="center">
                                             <%
                                             if(data.length!=0){
                                             var i=1;
                                             data.forEach(function(res){
                                             %>
-                                                <a href="#">
+                                                
                                                 <tr>
-                                                    <td><%=res.Apt_Name %></td>   
-                                                    <td class="text-right"><%=res.Lift_Count %></td>                                 
-                                                    <td class="text-right"><%=res.Floor_Count %></td>                                 
-                                                    <td class="text-right"><%=res.Flat_Count %></td>                                 
-                                                    <td class="text-right"><%=res.Camera_Count %></td>                                 
+                                                        <td><%=res.Flat_No %></td>   
+                                                        <td><%=res.BHK %></td>
+                                                        <td>
+                                                            <!-- Edited -->
+                                                            <form action="/updateflatdetail">
+                                                                <input type="hidden" name="fno" value="<%= res.Flat_No %>">
+                                                                <button class="au-btn--primary">Edit</button>
+                                                            </form>  
+                                                            <!-- //Edited -->
+                                                        </td>
                                                     
-                                                </tr>
-                                            </a>
+                                                </tr>                                                
                                             <%}) %>
                                             <% } else{ %>
                                                 <tr>

@@ -6,24 +6,24 @@
             <div class="main-content">                
                     <div class="container-fluid">
                                 <div class="table-data__tool-right" align="right">
-                                    <a href="addflat"><button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                        <i class="zmdi zmdi-plus"></i>add flats</button></a>
+                                    <a href="addApartment"><button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                        <i class="zmdi zmdi-plus"></i>add apartment</button></a>
                                 </div>
 
                                 <br>
                                 <div class="table-responsive table--no-card m-b-30">
                                     <table class="table table-borderless table-striped table-earning">
-                                        <thead>
+                                        <thead align="center">
                                             <tr>
-                                                <th>Apt Name</th>
+                                                <th>Apartment Name</th>
                                                 <th>Lift Count</th>
                                                 <th>Floor Count</th>
                                                 <th>Flat Count</th>
                                                 <th>Camera Count</th>
-                                                                                              
+                                                <th>Action</th>                                           
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody align="center">
                                             <%
                                             if(data.length!=0){
                                             var i=1;
@@ -35,7 +35,9 @@
                                                     <td class="text-right"><%=res.Lift_Count %></td>                                 
                                                     <td class="text-right"><%=res.Floor_Count %></td>                                 
                                                     <td class="text-right"><%=res.Flat_Count %></td>                                 
-                                                    <td class="text-right"><%=res.Camera_Count %></td>                                 
+                                                    <td class="text-right"><%=res.Camera_Count %></td> 
+<!-- Edited -->
+                                                    <td><a href="">Edit</a> &emsp; <a href="">Delete</a></td>                                
                                                     
                                                 </tr>
                                             </a>

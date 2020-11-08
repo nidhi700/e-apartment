@@ -3,6 +3,7 @@ var router = express.Router();
 var signin = require("../model/signin_model");
 var flat = require("../model/flat_model");
 var flatmember = require("../model/flatmember_model");
+var apt = require("../model/apartment_model");
 var db=require('../dbconnection');
 
 var da="";
@@ -40,10 +41,24 @@ router.get("/", function(req, res, next) {
   });
  
   
-  router.get('/viewflatdetails', function(req, res, next) {
+  router.get('/apartment_detail', function(req, res, next) {
     //   res.render('Venue');
+       apt.viewapartment(function(err,rows){
+          //console.log("inside index");
+            if(err){
+              res.json(err);
+              res.render('apartment_detail',{data:rows});
+            }
+            else{
+               // da=JSON.stringify(rows);
+                res.render('apartment_detail',{data:rows});
+            }
+        });
+      });
+
+  router.get('/viewflatdetails', function(req, res, next) {
+      console.log("inside view");
        flat.viewflat(function(err,rows){
-          console.log("inside index");
             if(err){
               res.json(err);
               res.render('view_flat_details',{data:rows});
@@ -54,7 +69,28 @@ router.get("/", function(req, res, next) {
             }
         });
       });
+//Edited 
+  router.get('/updateflatdetail', function(req, res, next) {
+    console.log("abc "+req.body.fno);
+    const fno = req.body.fno;    
+    flat.updateFlat1(function(fno,err,rows){
+        if(err){
+          res.json(err);   
+          res.render('updateFlat',{data:rows});       
+        }
+        else{
+          res.render('updateFlat',{data:rows});       
+        }
+    })
+    //res.render('updateFlat',{fno});
+   // res.json(req.body);
+  });
       
+  router.get('/addApartment', function(req, res, next) {
+    res.render('addApartment');
+   // res.json(req.body);
+  });
+
   router.get('/viewcomplaints', function(req, res, next) {
     res.render('viewComplaints');
    // res.json(req.body);
