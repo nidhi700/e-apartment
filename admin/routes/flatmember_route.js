@@ -23,4 +23,26 @@ router.post("/insertMember", (req, res, next) => {
     });
 });
 
+router.post("/updateMember", (req, res, next) => {
+    // console.log(req.body);
+    flatmember.updateFlatMember(req.body, (err, row) => {
+        if (err) {
+            res.send(err);
+            console.log("err");
+        }
+        else {
+            if (row) {
+                    console.log("ans");       
+                   // res.json(req.body);
+                    res.redirect('/index');
+            }
+            else {
+                console.log("hh");
+                res.send(err);
+          }
+        }
+    });
+});
+
+
 module.exports = router;

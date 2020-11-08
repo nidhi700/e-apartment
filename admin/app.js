@@ -15,7 +15,6 @@ var addApartmentRouter = require('./routes/apartment_route');
 var addFestival = require('./routes/festival_route');
 
 
-
 var app = express();
 
 // view engine setup
