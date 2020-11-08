@@ -13,36 +13,44 @@
                                     <div class="card-header">
                                         <strong>ADD MEMBERS</strong>                                        
                                     </div>
-                                    <form class="form-header" action="" method="POST" enctype="multipart/form-data">
+                                    <form class="form-header" action="/insertMember" method="POST">
                                     <div class="card-body card-block">     
                                         <div class="form-group">
                                             <label for="company" class=" form-control-label">Flat Number</label>
                                             <select name="flatno" id="flatno" class="form-control">
-                                                        <%%>
-                                                        <option value="0">A-101</option>
-                                                        <option value="1">B-105</option>       
-                                                        <%%>
+                                                <%
+                                                if(data.length!=0){
+                                                var i=1;
+                                                data.forEach(function(res){
+                                                %>
+                                                    <option value="<%=res.Flat_No %>"><%=res.Flat_No %></option>
+                                                    <!-- <option value="1">B-105</option>        -->
+                                                <%}) %>
+                                                <% } %>
+                                                    <!-- <option value="1">No</option> -->
                                                 </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="vat" class=" form-control-label">Full Name</label>
-                                            <input type="text" id="tenant_name" name="tenant_name" placeholder="Enter tenant name" class="form-control">
+                                            <input type="text" id="tenant_name" name="tenant_name" placeholder="Enter Full Name" class="form-control">
                                         </div>
                                         <div class="form-group">
+                                            <label for="email" class=" form-control-label">Email_ID</label>
+                                            <input type="text" id="email" name="email" placeholder="Enter Email ID" class="form-control">
+                                        </div> 
+                                        <div class="form-group">
                                             <label for="street" class=" form-control-label">Number of Flat Members</label>
-                                            <input type="text" id="t_flat_mem" name="t_flat_mem" placeholder="Enter total number of flat members" class="form-control">
+                                            <input type="text" id="t_flat_mem" name="flat_mem" placeholder="Enter total number of flat members" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="city" class=" form-control-label">Contact Number</label>
-                                            <input type="text" id="t_contact" name="t_contact" placeholder="Enter Contact Number" class="form-control">
+                                            <input type="text" id="t_contact" name="contact" placeholder="Enter Contact Number" class="form-control">
                                         </div> 
                                         <div class="form-group">
                                                 <label for="select" class=" form-control-label">Role</label>                                                
                                                 <select name="role" id="role" class="form-control">
-                                                    <%%>
-                                                        <option value="0">Owner</option>
-                                                        <option value="1">Tenant</option>       
-                                                    <%%>
+                                                        <option value="Owner">Owner</option>
+                                                        <option value="Tenant">Tenant</option>
                                                 </select>
                                         </div>                                   
                                         <div class="form-actions form-group">
