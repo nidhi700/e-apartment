@@ -22,6 +22,14 @@ var item = {
     viewmember:function(callback){
         return db.query("select * from member",callback);
     },
+    getmember:function(id,callback)
+    {
+        return db.query("select * from member where Login_ID=?",[id],callback);
+    },
+    updateFlatMember:function (item,callback) {
+        console.log("Flat Member Update");
+        return db.query('UPDATE member SET Flat_No=?,Name=?,Flat_Members=?,Contact_No=?,Role=? where Login_ID=?',[item.flatno,item.tenant_name,item.t_flat_mem,item.t_contact,item.role,item.loginid],callback);
+    },
 };
 
 module.exports = item;

@@ -5,7 +5,7 @@ var flat = require("../model/flat_model");
 var flatmember = require("../model/flatmember_model");
 var apt = require("../model/apartment_model");
 var db=require('../dbconnection');
-
+var obj={};
 var da="";
 
 
@@ -50,7 +50,55 @@ router.get("/", function(req, res, next) {
     });
   });
  
- 
+ router.get('/viewflatdetails', function(req, res, next) {
+    //   res.render('Venue');
+       flat.viewflat(function(err,rows){
+          console.log("inside index");
+            if(err){
+              res.json(err);
+              res.render('view_flat_details',{data:rows});
+            }
+            else{
+               // da=JSON.stringify(rows);
+                res.render('view_flat_details',{data:rows});
+            }
+        });
+      });
+
+      router.get("/edit_member/:id?", (req, res, next) => {
+        //console.log(req.params.id);
+        //res.render('EditMember');
+        flatmember.getmember(req.params.id,function(err,rows){
+         da=rows;
+         
+          if(err){
+            //res.render('EditMember',{data:rows});
+              res.json(err);
+          }
+          else{ 
+            obj = {
+              data: rows
+            };            
+          
+
+      flatmember.getFlatNo(function(err,rows1){
+        if(err){
+            res.json(err);
+        }
+        else{
+          data1=rows1;
+          var obj={};
+          obj.data=rows;
+          obj.data1=data1;
+            res.render('EditMember',obj);
+          }
+    });
+  }
+  });
+
+      });
+
+
  router.get('/apartment_detail', function(req, res, next) {
     //   res.render('Venue');
        apt.viewapartment(function(err,rows){
@@ -133,4 +181,8 @@ router.get("/", function(req, res, next) {
    // res.json(req.body);
   });
    
+  router.get('/addFestival', function(req, res, next) {
+    res.render('addFestival');
+   // res.json(req.body);
+  });
 module.exports = router;
