@@ -50,10 +50,22 @@ router.get("/", function(req, res, next) {
     });
   });
  
-<<<<<<< HEAD
-  
-  router.get('/apartment_detail', function(req, res, next) {
-=======
+ 
+ router.get('/apartment_detail', function(req, res, next) {
+    //   res.render('Venue');
+       apt.viewapartment(function(err,rows){
+          //console.log("inside index");
+            if(err){
+              res.json(err);
+              res.render('apartment_detail',{data:rows});
+            }
+            else{
+               // da=JSON.stringify(rows);
+                res.render('apartment_detail',{data:rows});
+            }
+        });
+      });
+
   router.get('/deleteflatmember/:id?', function(req, res, next) {
     // console.log(req.params.id);
     flatmember.deleteMember(req.params.id, (err,rows) => {
@@ -71,22 +83,7 @@ router.get("/", function(req, res, next) {
   });
  
 
-  router.get('/viewflatdetails', function(req, res, next) {
->>>>>>> 81d1d20c1fbb8ce7c4130eda0cbf9291149d1e71
-    //   res.render('Venue');
-       apt.viewapartment(function(err,rows){
-          //console.log("inside index");
-            if(err){
-              res.json(err);
-              res.render('apartment_detail',{data:rows});
-            }
-            else{
-               // da=JSON.stringify(rows);
-                res.render('apartment_detail',{data:rows});
-            }
-        });
-      });
-
+ 
   router.get('/viewflatdetails', function(req, res, next) {
       console.log("inside view");
        flat.viewflat(function(err,rows){
@@ -100,6 +97,7 @@ router.get("/", function(req, res, next) {
             }
         });
       });
+
 //Edited 
   router.get('/updateflatdetail', function(req, res, next) {
     console.log("abc "+req.body.fno);

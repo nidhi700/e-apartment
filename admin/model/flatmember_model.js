@@ -1,10 +1,10 @@
 var db=require('../dbconnection');
-var generator = require('generate-password');
+/*var generator = require('generate-password');
  
 var password = generator.generate({
     length: 10,
     numbers: true
-});
+});*/
 
 var item = {
     addFlatMember:function (item,callback) {
