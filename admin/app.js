@@ -12,7 +12,7 @@ var addFlatRouter = require('./routes/flat_route');
 var addFlatmemberRouter = require('./routes/flatmember_route');
 var addApartmentRouter = require('./routes/apartment_route');
 
-
+var flatmemberRouter=require('./routes/flatmember_route');
 
 var app = express();
 
@@ -32,6 +32,7 @@ app.use(usersRouter);
 app.use(signinRouter);
 
 app.use(addFlatRouter);
+app.use(flatmemberRouter);
 app.use(addFlatmemberRouter);
 app.use(addApartmentRouter);
 
