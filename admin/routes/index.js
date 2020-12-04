@@ -4,6 +4,8 @@ var signin = require("../model/signin_model");
 var flat = require("../model/flat_model");
 var flatmember = require("../model/flatmember_model");
 var apt = require("../model/apartment_model");
+var festival = require("../model/festival_model");
+
 var db=require('../dbconnection');
 var obj={};
 var da="";
@@ -129,8 +131,21 @@ router.get("/", function(req, res, next) {
         }
     });
   });
- 
-
+  
+  router.get('/deletefestival/:id?', function(req, res, next) {
+    // console.log(req.params.id);
+    festival.deleteFestival(req.params.id, (err,rows) => {
+      console.log("inside delete");
+        if(err){
+          res.json(err);
+          res.redirect('/festivalDetails');
+        }
+        else{
+           // da=JSON.stringify(rows);
+            res.redirect('/festivalDetails');
+        }
+    });
+  });
  
   router.get('/viewflatdetails', function(req, res, next) {
       console.log("inside view");
@@ -167,15 +182,33 @@ router.get("/", function(req, res, next) {
     res.render('addApartment');
    // res.json(req.body);
   });
-
+  router.get('/addFestival', function(req, res, next) {
+    res.render('addFestival');
+   // res.json(req.body);
+  });
+  
   router.get('/viewcomplaints', function(req, res, next) {
     res.render('viewComplaints');
    // res.json(req.body);
   });
+
+
   router.get('/festivalDetails', function(req, res, next) {
-    res.render('festival_details');
-   // res.json(req.body);
+    festival.getAllFestival(function(err,rows){
+      console.log("inside index");
+        if(err){
+          res.json(err);
+          res.render('festival',{data:rows});
+        }
+        else{
+           // da=JSON.stringify(rows);
+           console.log(rows);
+            res.render('festival',{data:rows});
+        }
+    });
   });
+  
+
   router.get('/sidebar', function(req, res, next) {
     res.render('sidebar');
    // res.json(req.body);

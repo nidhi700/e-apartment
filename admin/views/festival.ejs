@@ -6,7 +6,7 @@
             <div class="main-content">                
                     <div class="container-fluid">
                                 <div class="table-data__tool-right" align="right">
-                                    <a href="addflat"><button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                    <a href="addFestival"><button class="au-btn au-btn-icon au-btn--green au-btn--small">
                                         <i class="zmdi zmdi-plus"></i>add festival</button></a>
                                 </div>
 
@@ -17,23 +17,26 @@
                                             <tr>
                                                 <th>sr no</th>
                                                 <th>Festival Name</th>
-                                                <th>Date</th>
-                                                <th>Bill</th>
-                                                <th class="text-right">Total Expense</th>                
+                                                <th>Action</th>                
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <%%>
-                                            <a href="#">
+                                            <%
+                                            if(data.length!=0){
+                                            var i=1;
+                                            data.forEach(function(res){
+                                            %>
                                                 <tr>
-                                                    <td>1</td>
-                                                    <td>100398</td>
-                                                    <td>iPhone</td>
-                                                    <td>Photo</td>
-                                                    <td class="text-right">1</td>
+                                                    <td><%= res.Festival_ID %></td>
+                                                    <td><%= res.Name %></td>
+                    
+                                                    <td><a href="/deletefestival/<%=res.Festival_ID %>" data-toggle="tooltip" title="Delete!"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                                          
+                                                    </td>
                                                 </tr>
                                             </a>
-                                            <%%>
+                                            <%})%>
+                                            <% } %>
                                         </tbody>
                                     </table>
 								</div>
