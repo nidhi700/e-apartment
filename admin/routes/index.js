@@ -66,5 +66,9 @@ router.get("/", function(req, res, next) {
     res.render('sidebar');
    // res.json(req.body);
   });
+  router.get('/addFestival', function(req, res, next) {
+    res.render('addFestival');
+   // res.json(req.body);
+  });
    
 module.exports = router;
