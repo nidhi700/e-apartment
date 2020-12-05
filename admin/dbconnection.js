@@ -6,6 +6,9 @@ var connection=mysql.createConnection({
     password:'',
     database:'eapartment',
     port: 3360
+
+    //port : 3360
+
 });
 
 connection.connect(function(err) {
