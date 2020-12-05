@@ -16,6 +16,10 @@ router.get('/index', function(req, res, next) {
   res.render('index');
  // res.json(req.body);
 });
+router.get('/reminder',function(req, res, next) {
+  res.render('reminder_notification');
+ // res.json(req.body);
+});
 router.get("/", function(req, res, next) {
       res.render('Login');
      // res.json(req.body);
