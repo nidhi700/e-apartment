@@ -1,10 +1,27 @@
-var flatmember = require("../model/flatmember_model");
+var com = require("../model/complaints_model_user");
 var express = require("express");
 var router = express.Router();
 
-router.post("/insertMember", (req, res, next) => {
+
+router.post("/insertCom", (req, res, next) => {
+    com.addcomplaints(req.body, (err, row) => {
+        if (err) {
+            res.send(err);
+            console.log("err");
+        }
+        else {
+            if (row) {
+                res.redirect('/viewcomp');
+            }
+            else {
+                res.send(err);
+          }
+        }
+    });
+});
+router.post("/updateCom", (req, res, next) => {
     // console.log(req.body);
-    flatmember.addFlatMember(req.body, (err, row) => {
+    com.updatecomplaints(req.body, (err, row) => {
         if (err) {
             res.send(err);
             console.log("err");
@@ -13,7 +30,7 @@ router.post("/insertMember", (req, res, next) => {
             if (row) {
                     console.log("ans");       
                    // res.json(req.body);
-                    res.redirect('/viewflatmembers');
+                    res.redirect('/viewcomp');
             }
             else {
                 console.log("hh");
@@ -22,26 +39,4 @@ router.post("/insertMember", (req, res, next) => {
         }
     });
 });
-
-router.post("/updateMember", (req, res, next) => {
-    // console.log(req.body);
-    flatmember.updateFlatMember(req.body, (err, row) => {
-        if (err) {
-            res.send(err);
-            console.log("err");
-        }
-        else {
-            if (row) {
-                    console.log("ans");       
-                   // res.json(req.body);
-                    res.redirect('/viewflatmembers');
-            }
-            else {
-                console.log("hh");
-                res.send(err);
-          }
-        }
-    });
-});
-
 module.exports = router;

@@ -1,41 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <body class="animsition">
-    <%- include('sidebar'); %>
+    <%- include('sidebar_user'); %>
         <div class="page-container">
             <div class="main-content">                
                     <div class="container-fluid">
                                 
+
+                                <br>
                                 <div class="table-responsive table--no-card m-b-30">
                                     <table class="table table-borderless table-striped table-earning">
-                                        <thead>
+                                        <thead align="center">
                                             <tr>
-                                                <th>Date</th>
-                                                <th>Complaints</th>
+                                                <th>Festival Name</th>
+                                                <th>Date</th> 
+                                                <th>Total Expense</th>                           
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody align="center">
                                             <%
                                             if(data.length!=0){
-                                            
                                             data.forEach(function(res){
                                             %>
                                                 
                                                 <tr>
-                                                    <td><%=res.Date %></td>
-                                                        <td>
-                                                            <%=res.complaint_name %>
-                                                        </td>               
+                                                        <td><%=res.Name %></td>
+                                                        <td><%=res.Date %></td>   
+                                                        <td><%=res.Total_Expense %></td>
                                                 </tr>                                                
                                             <%}) %>
                                             <% } else{ %>
                                                 <tr>
-                                                    <td>No Data Found</td>
+                                                    <td colspan="4">No Data Found</td>
                                                 </tr>
                                             <% } %>
                                         </tbody>
                                     </table>
-                                </div>
+								</div>
                             </div>
                         </div>
                     </div>

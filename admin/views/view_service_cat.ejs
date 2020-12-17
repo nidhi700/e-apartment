@@ -5,37 +5,47 @@
         <div class="page-container">
             <div class="main-content">                
                     <div class="container-fluid">
-                                
+                                <div class="table-data__tool-right" align="right">
+                                    <a href="addServiceCat"><button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                        <i class="zmdi zmdi-plus"></i>add service category</button></a>
+                                </div>
+
+                                <br>
                                 <div class="table-responsive table--no-card m-b-30">
                                     <table class="table table-borderless table-striped table-earning">
-                                        <thead>
+                                        <thead align="center">
                                             <tr>
-                                                <th>Date</th>
-                                                <th>Complaints</th>
+                                                <th>Service Id</th>
+                                                <th>Service Name</th> 
+                                                <th>Action</th>                           
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody align="center">
                                             <%
                                             if(data.length!=0){
-                                            
+                                            var i=1;
                                             data.forEach(function(res){
                                             %>
                                                 
                                                 <tr>
-                                                    <td><%=res.Date %></td>
+                                                        <td><%=res.Service_ID %></td>   
+                                                        <td><%=res.Name %></td>
                                                         <td>
-                                                            <%=res.complaint_name %>
-                                                        </td>               
+                                                            <!-- Edited -->
+                                                            <a href="/edit_serviceCat/<%=res.Service_ID%>" data-toggle="tooltip" title="Update!"><i class="fa fa-pencil" aria-hidden="true"></i></a>  
+                                                            <!-- //Edited -->
+                                                        </td>
+                                                    
                                                 </tr>                                                
                                             <%}) %>
                                             <% } else{ %>
                                                 <tr>
-                                                    <td>No Data Found</td>
+                                                    <td colspan="4">No Data Found</td>
                                                 </tr>
                                             <% } %>
                                         </tbody>
                                     </table>
-                                </div>
+								</div>
                             </div>
                         </div>
                     </div>

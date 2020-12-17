@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <body class="animsition">
-    <%- include('sidebar'); %>
+    <%- include('sidebar_user'); %>
         <div class="page-container">
             <div class="main-content">                
                     <div class="container-fluid">
-                                
+                                <div class="table-data__tool-right" align="right">
+                                    <a href="addcom"><button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                        <i class="zmdi zmdi-plus"></i>add Complaints</button></a>
+                                </div>
+
+                                <br>
                                 <div class="table-responsive table--no-card m-b-30">
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
                                             <tr>
                                                 <th>Date</th>
                                                 <th>Complaints</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -25,7 +31,12 @@
                                                     <td><%=res.Date %></td>
                                                         <td>
                                                             <%=res.complaint_name %>
-                                                        </td>               
+                                                        </td>  
+                                                        <td>
+                                                            <!-- Edited -->
+                                                            <a href="/edit_comp/<%=res.C_id%>" data-toggle="tooltip" title="Update!"><i class="fa fa-pencil" aria-hidden="true"></i></a>  
+                                                            <!-- //Edited -->
+                                                        </td>             
                                                 </tr>                                                
                                             <%}) %>
                                             <% } else{ %>
@@ -35,7 +46,7 @@
                                             <% } %>
                                         </tbody>
                                     </table>
-                                </div>
+								</div>
                             </div>
                         </div>
                     </div>

@@ -7,13 +7,18 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var signinRouter = require('./routes/signin_route');
-
+var addServiceCatRoute = require('./routes/service_cat_route');
+var addServiceDetailRoute = require('./routes/service_detail_route');
 var addFlatRouter = require('./routes/flat_route');
 var addFlatmemberRouter = require('./routes/flatmember_route');
 var addApartmentRouter = require('./routes/apartment_route');
-
 var addFestival = require('./routes/festival_route');
 
+
+//------------------------------------------------User Area----------------------------------------
+var addComplaintsUser = require('./routes/complaints_route_User');
+
+//------------------------------------------------/User Area---------------------------------------
 
 var app = express();
 
@@ -31,12 +36,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(indexRouter);
 app.use(usersRouter);
 app.use(signinRouter);
-
 app.use(addFlatRouter);
+app.use(addServiceCatRoute);
+app.use(addServiceDetailRoute);
 app.use(addFlatmemberRouter);
 app.use(addApartmentRouter);
-
 app.use(addFestival);
+
+
+//------------------------------------------------User Area----------------------------------------
+app.use(addComplaintsUser);
+
+//------------------------------------------------/User Area----------------------------------------
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,31 +1,31 @@
-var flatmember = require("../model/flatmember_model");
+var servicecat = require("../model/service_cat_model");
 var express = require("express");
 var router = express.Router();
 
-router.post("/insertMember", (req, res, next) => {
+
+router.post("/insertServiceCat", (req, res, next) => {
     // console.log(req.body);
-    flatmember.addFlatMember(req.body, (err, row) => {
+    servicecat.addcat(req.body, (err, row) => {
         if (err) {
             res.send(err);
             console.log("err");
         }
         else {
             if (row) {
-                    console.log("ans");       
-                   // res.json(req.body);
-                    res.redirect('/viewflatmembers');
+                    console.log("ans");                          
+                    res.redirect('/servicecat');
             }
             else {
-                console.log("hh");
+                console.log("Service Error");
                 res.send(err);
           }
         }
     });
 });
 
-router.post("/updateMember", (req, res, next) => {
+router.post("/updateServiceCat", (req, res, next) => {
     // console.log(req.body);
-    flatmember.updateFlatMember(req.body, (err, row) => {
+    servicecat.updateServiceCategory(req.body, (err, row) => {
         if (err) {
             res.send(err);
             console.log("err");
@@ -34,7 +34,7 @@ router.post("/updateMember", (req, res, next) => {
             if (row) {
                     console.log("ans");       
                    // res.json(req.body);
-                    res.redirect('/viewflatmembers');
+                    res.redirect('/servicecat');
             }
             else {
                 console.log("hh");

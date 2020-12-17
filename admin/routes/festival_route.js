@@ -17,7 +17,7 @@ router.post("/insertFestival", (req, res, next) => {
             if (row) {
                     console.log("ans");       
                    // res.json(req.body);
-                    res.redirect('/index');
+                    res.redirect('/festivalDetails');
             }
             else {
                 console.log("hh");
