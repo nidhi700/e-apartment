@@ -13,6 +13,7 @@ var addFlatRouter = require('./routes/flat_route');
 var addFlatmemberRouter = require('./routes/flatmember_route');
 var addApartmentRouter = require('./routes/apartment_route');
 var addFestival = require('./routes/festival_route');
+var remindernot = require('./routes/reminder_route');
 
 
 //------------------------------------------------User Area----------------------------------------
@@ -42,13 +43,12 @@ app.use(addServiceDetailRoute);
 app.use(addFlatmemberRouter);
 app.use(addApartmentRouter);
 app.use(addFestival);
-
+app.use(remindernot);
 
 //------------------------------------------------User Area----------------------------------------
 app.use(addComplaintsUser);
 
 //------------------------------------------------/User Area----------------------------------------
-
 
 
 // catch 404 and forward to error handler

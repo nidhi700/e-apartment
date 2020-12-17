@@ -14,7 +14,6 @@ var com = require("../model/complaints_model_user");
 var fest_user = require("../model/festival_model_user");
 //-----------------------------------/User Side---------------------------------------------------
 
-
 var db=require('../dbconnection');
 var obj={};
 var da="";
@@ -23,6 +22,10 @@ var da="";
 /* GET home page. */
 router.get('/index', function(req, res, next) {
   res.render('index');
+ // res.json(req.body);
+});
+router.get('/reminder',function(req, res, next) {
+  res.render('reminder_notification');
  // res.json(req.body);
 });
 router.get("/", function(req, res, next) {
@@ -156,8 +159,6 @@ router.get("/", function(req, res, next) {
         }
     });
   });
- 
- 
 
 //Edited 
   router.get('/updateflatdetail', function(req, res, next) {
@@ -182,6 +183,11 @@ router.get("/", function(req, res, next) {
   });
   router.get('/addFestival', function(req, res, next) {
     res.render('addFestival');
+   // res.json(req.body);
+  });
+  
+  router.get('/viewcomplaints', function(req, res, next) {
+    res.render('viewComplaints');
    // res.json(req.body);
   });
 
@@ -316,7 +322,6 @@ service_detail.getCattNo(function(err,rows1){
         }
     });
   });
-
 
   router.get('/sidebar', function(req, res, next) {
     res.render('sidebar');
