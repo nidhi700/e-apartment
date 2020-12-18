@@ -20,7 +20,7 @@ var item = {
     },
     updateServicedetails:function (item,callback) {
         //console.log("Category Update"+item.servicecatid+" "+item.category_name);
-        db.query("select expense from service_details where SD_ID=?",[item.SD_ID], function (err, result) {
+        db.query("select Expense from service_details where SD_ID=?",[item.SD_ID], function (err, result) {
             if (err) throw err;
             var servicecharge=result[0].expense;
             
@@ -37,6 +37,7 @@ var item = {
                 db.query("update society set Society_Fund=? ",[a]);
             });
         });
+        
         return db.query('UPDATE service_details SET Service_ID=?,Date=?,Expense=?,Description=?,Bill=? where SD_ID=?',[item.Service_ID,item.servicedate,item.expense,item.description,item.bill,item.SD_ID],callback);
     },
     getServiceDetails:function(id,callback)

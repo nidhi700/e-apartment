@@ -75,7 +75,8 @@
                                         <strong>Update Service Category</strong>
                                     </div>
                                     <form class="form-header" action="/updateServiceCat" method="POST">
-                                        
+                                      <% data.forEach(function(res){
+                                            %>  
                                     <div class="card-body card-block">
                                         <div class="form-group">
                                             <label for="vat" class=" form-control-label">Service Category Name</label>
@@ -101,7 +102,7 @@
                                         <div class="form-actions form-group">
                                                 <button type="submit" class="btn btn-primary btn-sm">Edit</button>
                                         </div>
-                                       
+                                       <% })%>
                                     </form>
                                     </div>
                                     </div>

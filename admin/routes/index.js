@@ -383,8 +383,8 @@ router.get('/service_detail_user', function(req, res, next) {
 
 
 router.get("/profile_users", (req, res, next) => {
-    var id="honeyshah@gmail.com";
-    pro_user.viewprofile(id,function(err,rows){
+    //var id="honeyshah@gmail.com";
+    pro_user.viewprofile(global.id,function(err,rows){
     if(err){
       res.json(err);
     }
@@ -397,10 +397,9 @@ router.get("/profile_users", (req, res, next) => {
   });
 });
 
-//var id1;
+
 router.get('/index_user', function(req, res, next) {
-  //id1=res;
-  //console.log("res"+res[0]);
+  console.log("ab"+global.id);
   res.render('index_user');
 });
 
