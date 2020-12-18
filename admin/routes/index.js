@@ -191,6 +191,7 @@ router.get("/", function(req, res, next) {
    // res.json(req.body);
   });
 
+   
 
   router.get('/festivalDetails', function(req, res, next) {
     festival.getAllFestival(function(err,rows){
