@@ -18,7 +18,7 @@ var remindernot = require('./routes/reminder_route');
 
 //------------------------------------------------User Area----------------------------------------
 var addComplaintsUser = require('./routes/complaints_route_User');
-
+var profile = require('./routes/profile_route_user');
 //------------------------------------------------/User Area---------------------------------------
 
 var app = express();
@@ -47,7 +47,7 @@ app.use(remindernot);
 
 //------------------------------------------------User Area----------------------------------------
 app.use(addComplaintsUser);
-
+app.use(profile);
 //------------------------------------------------/User Area----------------------------------------
 
 

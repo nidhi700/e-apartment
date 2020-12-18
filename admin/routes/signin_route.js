@@ -47,7 +47,8 @@ router.post("/", (req, res, next) => {
                     }
                     else
                     {
-                        res.redirect('/index_user')
+                        var a=row[0].Login_ID;
+                        res.redirect('/index_user');
                     }
                 }
             }

@@ -12,6 +12,7 @@ var comp = require("../model/complaints_model");
 //-----------------------------------User Side---------------------------------------------------
 var com = require("../model/complaints_model_user");
 var fest_user = require("../model/festival_model_user");
+var pro_user = require("../model/profile_model_user");
 //-----------------------------------/User Side---------------------------------------------------
 
 var db=require('../dbconnection');
@@ -22,23 +23,18 @@ var da="";
 /* GET home page. */
 router.get('/index', function(req, res, next) {
   res.render('index');
- // res.json(req.body);
 });
 router.get('/reminder',function(req, res, next) {
   res.render('reminder_notification');
- // res.json(req.body);
 });
 router.get("/", function(req, res, next) {
-      res.render('Login');
-     // res.json(req.body);
-  });
-  router.get('/addflat', function(req, res, next) {
-    res.render('addFlat');
-   // res.json(req.body);
-  });
+  res.render('Login');
+});
+router.get('/addflat', function(req, res, next) {
+  res.render('addFlat');
+});
   
-  router.get('/addmember',(req, res, next) => {
-    // console.log("in get flat number");
+router.get('/addmember',(req, res, next) => {
     flatmember.getFlatNo((err, row) => {
         if (err) {
             res.json(err);
@@ -58,7 +54,6 @@ router.get("/", function(req, res, next) {
           res.render('view_flat_members',{data:rows});
         }
         else{
-           // da=JSON.stringify(rows);
             res.render('view_flat_members',{data:rows});
         }
     });
@@ -80,38 +75,31 @@ router.get("/", function(req, res, next) {
       });
 
 
-      router.get("/edit_member/:id?", (req, res, next) => {
-        //console.log(req.params.id);
-        //res.render('EditMember');
-        flatmember.getmember(req.params.id,function(err,rows){
-         da=rows;
-         
+router.get("/edit_member/:id?", (req, res, next) => {
+  flatmember.getmember(req.params.id,function(err,rows){
+      da=rows;
+      if(err){
+        res.json(err);
+      }
+      else{ 
+        obj = {
+          data: rows
+        };            
+        flatmember.getFlatNo(function(err,rows1){
           if(err){
-            //res.render('EditMember',{data:rows});
-              res.json(err);
-          }
-          else{ 
-            obj = {
-              data: rows
-            };            
-        
-
-      flatmember.getFlatNo(function(err,rows1){
-        if(err){
             res.json(err);
-        }
-        else{
-          data1=rows1;
-          var obj={};
-          obj.data=rows;
-          obj.data1=data1;
+          }
+          else{
+            data1=rows1;
+            var obj={};
+            obj.data=rows;
+            obj.data1=data1;
             res.render('EditMember',obj);
           }
-    });
-  }
+        });
+      }
   });
-
-      });
+});
 
 
  router.get('/apartment_detail', function(req, res, next) {
@@ -160,7 +148,6 @@ router.get("/", function(req, res, next) {
     });
   });
 
-//Edited 
   router.get('/updateflatdetail', function(req, res, next) {
     console.log("abc "+req.body.fno);
     const fno = req.body.fno;    
@@ -173,8 +160,6 @@ router.get("/", function(req, res, next) {
           res.render('updateFlat',{data:rows});       
         }
     })
-    //res.render('updateFlat',{fno});
-   // res.json(req.body);
   });
       
   router.get('/addApartment', function(req, res, next) {
@@ -233,8 +218,6 @@ router.get("/", function(req, res, next) {
         //console.log(req.params.id)
         //res.render('EditMember');
         service_cat.getServiceCat(req.params.id,function(err,rows){
-         da=rows;
-         
           if(err){
             
               res.json(err);
@@ -333,24 +316,24 @@ service_detail.getCattNo(function(err,rows1){
 
 
 
-//------------------------------------------------User Area----------------------------------------
+//--------------------------------------------User Area-----------------------------------------
 
 
 
 
 
 
- router.get('/viewcomp', function(req, res, next) {
-    com.viewcomplaints(function(err,rows){
-        if(err){
-          res.json(err);
-          res.render('view_complaint_User',{data:rows});
-        }
-        else{
-            res.render('view_complaint_User',{data:rows});
-        }
-    });
+router.get('/viewcomp', function(req, res, next) {
+  com.viewcomplaints(function(err,rows){
+    if(err){
+      res.json(err);
+      res.render('view_complaint_User',{data:rows});
+    }
+    else{
+      res.render('view_complaint_User',{data:rows});
+    }
   });
+});
 
 
 router.get('/addcom', function(req, res, next) {
@@ -359,7 +342,6 @@ router.get('/addcom', function(req, res, next) {
 
 router.get("/edit_comp/:id?", (req, res, next) => {
   com.getComp(req.params.id,function(err,rows){
-          
     if(err){
       res.json(err);
     }
@@ -373,43 +355,60 @@ router.get("/edit_comp/:id?", (req, res, next) => {
 });
 
 
- router.get('/viewFest', function(req, res, next) {
+router.get('/viewFest', function(req, res, next) {
     fest_user.viewfestival(function(err,rows){
-        if(err){
-          res.json(err);
-          res.render('view_festival_User',{data:rows});
-        }
-        else{
-            res.render('view_festival_User',{data:rows});
-        }
-    });
+    if(err){
+      res.json(err);
+      res.render('view_festival_User',{data:rows});
+    }
+    else{
+      res.render('view_festival_User',{data:rows});
+    }
   });
+});
 
 
 
 router.get('/service_detail_user', function(req, res, next) {
-  //   res.render('Venue');
   service_detail_user.viewservicedetails(function(err,rows){
-        console.log("inside Service");
-          if(err){
-            res.json(err);
-            res.render('view_service_user',{data:rows});
-          }
-          else{
-             // da=JSON.stringify(rows);
-              res.render('view_service_user',{data:rows});
-          }
-      });
-    });
+    if(err){
+      res.json(err);
+      res.render('index_user',{data:rows});
+    }
+    else{
+      res.render('view_service_user',{data:rows});
+    }
+  });
+});
 
 
+router.get("/profile_users", (req, res, next) => {
+    var id="honeyshah@gmail.com";
+    pro_user.viewprofile(id,function(err,rows){
+    if(err){
+      res.json(err);
+    }
+    else{ 
+      obj = {
+        data: rows
+      }; 
+      res.render('profile_user',obj);
+    }
+  });
+});
+
+//var id1;
 router.get('/index_user', function(req, res, next) {
+  //id1=res;
+  //console.log("res"+res[0]);
   res.render('index_user');
 });
 
-  router.get('/sidebar_user', function(req, res, next) {
-    res.render('sidebar_user');
-  });
+
+router.get('/sidebar_user', function(req, res, next) {
+
+  res.render('sidebar_user');
+});
 
 
 module.exports = router;
