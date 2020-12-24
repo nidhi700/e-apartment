@@ -215,13 +215,10 @@ router.get("/edit_member/:id?", (req, res, next) => {
   
       
     router.get("/edit_serviceCat/:id?", (req, res, next) => {
-        //console.log(req.params.id)
-        //res.render('EditMember');
         service_cat.getServiceCat(req.params.id,function(err,rows){
           if(err){
             
               res.json(err);
-              //res.render('EditServiceCat');            
           }
           else{ 
             obj = {
@@ -231,7 +228,6 @@ router.get("/edit_member/:id?", (req, res, next) => {
           }
           
   });
-  //return res.redirect('/index');
       });
 
       router.get('/service_detail', function(req, res, next) {
@@ -249,9 +245,7 @@ router.get("/edit_member/:id?", (req, res, next) => {
             });
           });
 
-
-       
-  router.get('/addServicedetails',(req, res, next) => {
+router.get('/addServicedetails',(req, res, next) => {
     service_cat.viewcat((err, row) => {
         if (err) {
             res.json(err);
@@ -263,33 +257,30 @@ router.get("/edit_member/:id?", (req, res, next) => {
     });
 });
 
-
-router.get("/editServiceCat/:id?", (req, res, next) => {  
-  service_detail.updateServicedetails(req.params.id,function(err,rows){
-   da=rows;
-   
-    if(err){
+router.get("/editServiceDetail/:id?", (req, res, next) => {  
+  service_detail.getServiceDetails(req.params.id,function(err,rows){
+      da=rows;
+      if(err){
         res.json(err);
-    }
-    else{ 
-      obj = {
-        data: rows
-      };            
-
-service_detail.getCattNo(function(err,rows1){
-  if(err){
-      res.json(err);
-  }
-  else{
-    data1=rows1;
-    var obj={};
-    obj.data=rows;
-    obj.data1=data1;
-      res.render('EditServiceDetails',obj);
-    }
-});
-}
-});
+      }
+      else{ 
+        obj = {
+          data: rows
+        };            
+        service_detail.getCattNo(function(err,rows1){
+          if(err){
+            res.json(err);
+          }
+          else{
+            data1=rows1;
+            var obj={};
+            obj.data=rows;
+            //obj.data1=data1;
+            res.render('EditServiceDetails',obj);
+          }
+        });
+      }
+  });
 
 });
 

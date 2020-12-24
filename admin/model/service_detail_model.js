@@ -15,17 +15,18 @@ var item = {
             db.query("update society set Society_Fund=? ",[a]);
         });
         
-
          return db.query('insert into service_details(Service_ID, Date, Expense, Description, Bill) values(?,?,?,?,?)',[item.Service_ID,item.servicedate,item.expense,item.description,item.bill],callback);
     },
     updateServicedetails:function (item,callback) {
-        //console.log("Category Update"+item.servicecatid+" "+item.category_name);
-        db.query("select Expense from service_details where SD_ID=?",[item.SD_ID], function (err, result) {
+      
+        db.query("select Expense from service_details where SD_ID=?",[item.sdid], function (err, result) {
             if (err) throw err;
-            var servicecharge=result[0].expense;
-            
+
+            var servicecharge=result[0].Expense;
+            console.log("ser: "+servicecharge);
             db.query("select Society_Fund from society", function (err, result) {
                 a= result[0].Society_Fund;
+                console.log("a: "+a);
                 if(servicecharge>item.expense)
                 {
                     a+=(servicecharge-item.expense);
@@ -37,17 +38,17 @@ var item = {
                 db.query("update society set Society_Fund=? ",[a]);
             });
         });
-        
-        return db.query('UPDATE service_details SET Service_ID=?,Date=?,Expense=?,Description=?,Bill=? where SD_ID=?',[item.Service_ID,item.servicedate,item.expense,item.description,item.bill,item.SD_ID],callback);
+
+        return db.query('update service_details SET Date=?,Expense=?,Description=?,Bill=? where SD_ID=?',[item.servicedate,item.expense,item.description,item.bill,item.sdid],callback);
     },
+
     getServiceDetails:function(id,callback)
     {
         console.log("select category"+id);
         return db.query("select * from service_details where SD_ID=?",[id],callback);
     },
-    getCattNo:function (callback) {
-        
-        return db.query('select * from service_category',callback);
+    getCattNo:function (callback) {        
+        return db.query('select Name from service_category',callback);
     }
 };
 

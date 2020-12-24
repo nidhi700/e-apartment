@@ -23,21 +23,21 @@ router.post("/insertServiceDetail", (req, res, next) => {
     });
 });
 
-router.post("/updateServiceCat", (req, res, next) => {
+router.post("/updateServiceDetail1", (req, res, next) => {
     // console.log(req.body);
-    servicedetail.updateServiceCategory(req.body, (err, row) => {
+    servicedetail.updateServicedetails(req.body, (err, row) => {
         if (err) {
             res.send(err);
             console.log("err");
         }
         else {
             if (row) {
-                    console.log("ans");       
+                    //console.log("ans");       
                    // res.json(req.body);
                     res.redirect('/service_detail');
             }
             else {
-                console.log("hh");
+                //console.log("hh");
                 res.send(err);
           }
         }
