@@ -43,6 +43,4 @@ router.post("/updateMember", (req, res, next) => {
         }
     });
 });
-
-
 module.exports = router;

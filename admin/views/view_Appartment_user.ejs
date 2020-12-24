@@ -1,27 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <body class="animsition">
-    <%- include('sidebar'); %>
+    <%- include('sidebar_user'); %>
         <div class="page-container">
             <div class="main-content">                
                     <div class="container-fluid">
-                                <div class="table-data__tool-right" align="right">
-                                    <a href="addServicedetails"><button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                        <i class="zmdi zmdi-plus"></i>add service detail</button></a>
-                                </div>
-
-                                <br>
                                 <div class="table-responsive table--no-card m-b-30">
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead align="center">
                                             <tr>
-                                                <th>Service Id</th>
-                                                <th>Service Category Name</th> 
-                                                <th>Date</th>
-                                                <th>Expense</th>
-                                                <th>Description</th>
-                                                <th>Bill</th>
-                                                <th>Action</th>                           
+                                                <th>Apartment Name</th>
+                                                <th>Lift Count</th>
+                                                <th>Floor Count</th>
+                                                <th>Flat Count</th>
+                                                <th>Camera Count</th>                                    
                                             </tr>
                                         </thead>
                                         <tbody align="center">
@@ -30,25 +22,19 @@
                                             var i=1;
                                             data.forEach(function(res){
                                             %>
-                                                
+                                                <a href="#">
                                                 <tr>
-                                                        <td><%=res.SD_ID %></td>   
-                                                        <td><%=res.Name %></td>   
-                                                        <td><%=res.Date %></td>
-                                                        <td><%=res.Expense %></td>
-                                                        <td><%=res.Description %></td>
-                                                        <td><img src="<%=res.Bill %>" alt="Image" width=570% style="height: 70px;"></td>
-                                                        <td>
-                                                            <!-- Edited -->
-                                                            <a href="/editServiceCat/<%=res.SD_ID%>" data-toggle="tooltip" title="Update!"><i class="fa fa-pencil" aria-hidden="true"></i></a>   
-                                                            <!-- //Edited -->
-                                                        </td>
-                                                    
-                                                </tr>                                                
+                                                    <td><%=res.Apt_Name %></td>   
+                                                    <td class="text-right"><%=res.Lift_Count %></td>                                 
+                                                    <td class="text-right"><%=res.Floor_Count %></td>                                 
+                                                    <td class="text-right"><%=res.Flat_Count %></td>                                 
+                                                    <td class="text-right"><%=res.Camera_Count %></td> 
+                                                </tr>
+                                            </a>
                                             <%}) %>
                                             <% } else{ %>
                                                 <tr>
-                                                    <td colspan="4">No Data Found</td>
+                                                    <td colspan="6">No Data Found</td>
                                                 </tr>
                                             <% } %>
                                         </tbody>

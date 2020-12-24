@@ -8,6 +8,15 @@ var festival = require("../model/festival_model");
 var service_cat = require("../model/service_cat_model");
 var service_detail = require("../model/service_detail_model");
 
+
+//-----------------------------------User Side---------------------------------------------------
+var com = require("../model/complaints_model_user");
+var fest_user = require("../model/festival_model_user");
+var service_detail_user = require("../model/service_user_model");
+var profile_user = require("../model/profile_model_user");
+//-----------------------------------/User Side---------------------------------------------------
+
+
 var db=require('../dbconnection');
 var obj={};
 var da="";
@@ -178,7 +187,7 @@ router.get("/", function(req, res, next) {
    // res.json(req.body);
   });
   
-  router.get('/viewcomplaints', function(req, res, next) {
+  router.get('/viewcomplaints_admin', function(req, res, next) {
     res.render('viewComplaints');
    // res.json(req.body);
   });
@@ -260,7 +269,6 @@ router.get("/", function(req, res, next) {
 
        
   router.get('/addServicedetails',(req, res, next) => {
-    // console.log("in get flat number");
     service_cat.viewcat((err, row) => {
         if (err) {
             res.json(err);
@@ -273,21 +281,17 @@ router.get("/", function(req, res, next) {
 });
 
 
-router.get("/editServiceCat/:id?", (req, res, next) => {
-  //console.log(req.params.id);
-  //res.render('EditMember');
+router.get("/editServiceCat/:id?", (req, res, next) => {  
   service_detail.updateServicedetails(req.params.id,function(err,rows){
    da=rows;
    
     if(err){
-      //res.render('EditMember',{data:rows});
         res.json(err);
     }
     else{ 
       obj = {
         data: rows
       };            
-  
 
 service_detail.getCattNo(function(err,rows1){
   if(err){
@@ -311,5 +315,108 @@ service_detail.getCattNo(function(err,rows1){
     res.render('sidebar');
    // res.json(req.body);
   });
+
+
+
+
+
+//------------------------------------------------User Area----------------------------------------
+
+
+
+
+
+
+ router.get('/viewcomp', function(req, res, next) {
+    com.viewcomplaints(function(err,rows){
+        if(err){
+          res.json(err);
+          res.render('view_complaint_User',{data:rows});
+        }
+        else{
+            res.render('view_complaint_User',{data:rows});
+        }
+    });
+  });
+
+
+router.get('/addcom', function(req, res, next) {
+    res.render('add_complaints_user');
+   // res.json(req.body);
+  });
+
+
+
+ router.get('/viewFest', function(req, res, next) {
+    fest_user.viewfestival(function(err,rows){
+        if(err){
+          res.json(err);
+          res.render('view_festival_User',{data:rows});
+        }
+        else{
+            res.render('view_festival_User',{data:rows});
+        }
+    });
+  });
+
+
+
+router.get('/service_detail_user', function(req, res, next) {
+  //   res.render('Venue');
+  service_detail_user.viewservicedetailsuser(function(err,rows){
+        console.log("inside Service");
+          if(err){
+            res.json(err);
+            res.render('view_service_user',{data:rows});
+          }
+          else{
+             // da=JSON.stringify(rows);
+              res.render('view_service_user',{data:rows});
+          }
+      });
+    });
+
+
+    router.get('/appartment_user', function(req, res, next) {
+      //   res.render('Venue');
+      apartment_user.viewapartment(function(err,rows){
+            console.log("inside Service");
+              if(err){
+                res.json(err);
+                res.render('view_Appartment_user',{data:rows});
+              }
+              else{
+                 // da=JSON.stringify(rows);
+                  res.render('view_Appartment_user',{data:rows});
+              }
+          });
+        });
+
+        router.get('/profile_users', function(req, res) {
+          //   res.render('Venue');
+          profile_user.viewprofile(function(err,rows){
+              da=rows;
+                console.log("inside Service");
+                  if(err){
+                    console.log("error");
+                    res.json(err);
+                    res.render('view_Appartment_user',{data:rows});
+                  }
+                  else{
+                    console.log(" no er"+rows);
+                     // da=JSON.stringify(rows);
+                      res.render('profile_user',{data:rows});
+                  }
+              });
+            });
+
+router.get('/index_user', function(req, res, next) {
+  res.render('index_user');
+});
+
+  router.get('/sidebar_user', function(req, res, next) {
+    res.render('sidebar_user');
+  });
+
 
 module.exports = router;
