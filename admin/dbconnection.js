@@ -5,7 +5,7 @@ var connection=mysql.createConnection({
     user:'root',
     password:'',
     database:'eapartment',
-    port: 3360
+    //port: 3360
 
     //port : 3360
 
