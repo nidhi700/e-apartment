@@ -4,7 +4,7 @@ var item = {
     viewservicedetails:function(callback) {    
         return db.query("select * from service_details as sd join service_category as sc on sd.Service_ID=sc.Service_ID",callback);   
     },
-    addservicedetails:function (item,callback) {     
+    addservicedetails:function (item,sampleFile,callback) {     
         console.log(item.bill);
         
         db.query("select Society_Fund from society", function (err, result) {
@@ -14,10 +14,10 @@ var item = {
             a-=item.expense;
             db.query("update society set Society_Fund=? ",[a]);
         });
-        
-         return db.query('insert into service_details(Service_ID, Date, Expense, Description, Bill) values(?,?,?,?,?)',[item.Service_ID,item.servicedate,item.expense,item.description,item.bill],callback);
+        //console.log(sampleFile);
+         return db.query('insert into service_details(Service_ID, Date, Expense, Description, Bill) values(?,?,?,?,?)',[item.Service_ID,item.servicedate,item.expense,item.description,'images\\'+sampleFile.name],callback);
     },
-    updateServicedetails:function (item,callback) {
+    updateServicedetails:function (item,sampleFile,callback) {
       
         db.query("select Expense from service_details where SD_ID=?",[item.sdid], function (err, result) {
             if (err) throw err;
@@ -39,7 +39,7 @@ var item = {
             });
         });
 
-        return db.query('update service_details SET Date=?,Expense=?,Description=?,Bill=? where SD_ID=?',[item.servicedate,item.expense,item.description,item.bill,item.sdid],callback);
+        return db.query('update service_details SET Date=?,Expense=?,Description=?,Bill=? where SD_ID=?',[item.servicedate,item.expense,item.description,'images\\'+sampleFile.name,item.sdid],callback);
     },
 
     getServiceDetails:function(id,callback)

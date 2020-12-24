@@ -13,8 +13,7 @@ var addFlatmemberRouter = require('./routes/flatmember_route');
 var addApartmentRouter = require('./routes/apartment_route');
 var addFestival = require('./routes/festival_route');
 var remindernot = require('./routes/reminder_route');
-
-
+var fileUpload = require('express-fileupload');
 //------------------------------------------------User Area----------------------------------------
 var addComplaintsUser = require('./routes/complaints_route_User');
 var profile = require('./routes/profile_route_user');
@@ -25,7 +24,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+app.use(fileUpload());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

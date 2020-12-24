@@ -74,7 +74,7 @@
                                     <div class="card-header">
                                         <strong>Update Service Category</strong>
                                     </div>
-                                    <form class="form-header" action="/updateServiceDetail1" method="POST">
+                                    <form class="form-header" action="/updateServiceDetail1" method="POST" encType="multipart/form-data" >
                                       <% data.forEach(function(res){
                                             %>  
                                     <div class="card-body card-block">
@@ -95,8 +95,9 @@
                                             <input type="text" id="description" name="description" value="<%=res.Description %>" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="city" class=" form-control-label">Bill</label>
-                                            <input type="text" id="bill" name="bill" value="<%=res.Bill%>" class="form-control">
+                                            <label for="city" class=" form-control-label">Bill</label><br>
+                                            <img src="\<%=res.Bill %>" alt="Image" width=50% height="30%"><br><br>
+                                            <input type="file" id="sampleFile" name="sampleFile" class="form-control">
                                         </div>    
                                         <input type="text" hidden id="sdid" name="sdid" value="<%=res.SD_ID %>" class="form-control">
                                         <div class="form-actions form-group">
