@@ -47,14 +47,20 @@
                             </a>
                         </div>
                         <div class="login-form">
-                            <form action="/login" method="post">
+                            <form action="/" method="post">
                                 <div class="form-group">
                                     <label>Email Address</label>
-                                    <input class="au-input au-input--full" type="text" name="email" placeholder="Email">
+                                    <input class="au-input au-input--full" type="email" name="email" placeholder="Email" 
+                                    required
+                                    title="Enter Email Format..">
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
+                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password"
+                                    maxLength="30"
+                                    minLength="8"
+                                    pattern="[a-zA-Z0-9_@$~.,()=+*^%#!\/?><-]*"
+                                    title="Only Numbers,characters and (_@$~.,()=+*^%#!\/?><-) are allowed (range 8-30)">
                                 </div>
                                 <div class="login-checkbox">
                                     <label>

@@ -15,7 +15,7 @@ var item = {
     {
         console.log("select category"+id);
         return db.query("select * from service_category where Service_ID=?",[id],callback);
-    },
+    }
     
 };
 

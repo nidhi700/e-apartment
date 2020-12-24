@@ -7,8 +7,35 @@
                     <div class="container-fluid">
                                 
                                 <div class="table-responsive table--no-card m-b-30">
-                                    
-								</div>
+                                    <table class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Complaints</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%
+                                            if(data.length!=0){
+                                            
+                                            data.forEach(function(res){
+                                            %>
+                                                
+                                                <tr>
+                                                    <td><%=res.Date %></td>
+                                                        <td>
+                                                            <%=res.complaint_name %>
+                                                        </td>               
+                                                </tr>                                                
+                                            <%}) %>
+                                            <% } else{ %>
+                                                <tr>
+                                                    <td>No Data Found</td>
+                                                </tr>
+                                            <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

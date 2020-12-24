@@ -27,7 +27,6 @@
                                         <tbody align="center">
                                             <%
                                             if(data.length!=0){
-                                            var i=1;
                                             data.forEach(function(res){
                                             %>
                                                 
@@ -37,10 +36,10 @@
                                                         <td><%=res.Date %></td>
                                                         <td><%=res.Expense %></td>
                                                         <td><%=res.Description %></td>
-                                                        <td><img src="<%=res.Bill %>" alt="Image" width=570% style="height: 70px;"></td>
+                                                        <td><img src="<%=res.Bill %>" alt="Image" width="120dp" style=" height:100px; "></td>
                                                         <td>
                                                             <!-- Edited -->
-                                                            <a href="/editServiceCat/<%=res.SD_ID%>" data-toggle="tooltip" title="Update!"><i class="fa fa-pencil" aria-hidden="true"></i></a>   
+                                                            <a href="/editServiceDetail/<%=res.SD_ID%>" data-toggle="tooltip" title="Update!"><i class="fa fa-pencil" aria-hidden="true"></i></a>   
                                                             <!-- //Edited -->
                                                         </td>
                                                     

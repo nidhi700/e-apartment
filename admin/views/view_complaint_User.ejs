@@ -15,7 +15,9 @@
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
                                             <tr>
+                                                <th>Date</th>
                                                 <th>Complaints</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -26,9 +28,15 @@
                                             %>
                                                 
                                                 <tr>
+                                                    <td><%=res.Date %></td>
                                                         <td>
                                                             <%=res.complaint_name %>
-                                                        </td>               
+                                                        </td>  
+                                                        <td>
+                                                            <!-- Edited -->
+                                                            <a href="/edit_comp/<%=res.C_id%>" data-toggle="tooltip" title="Update!"><i class="fa fa-pencil" aria-hidden="true"></i></a>  
+                                                            <!-- //Edited -->
+                                                        </td>             
                                                 </tr>                                                
                                             <%}) %>
                                             <% } else{ %>

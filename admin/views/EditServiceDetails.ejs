@@ -74,34 +74,36 @@
                                     <div class="card-header">
                                         <strong>Update Service Category</strong>
                                     </div>
-                                    <form class="form-header" action="/updateServiceCat" method="POST">
-                                        
+                                    <form class="form-header" action="/updateServiceDetail1" method="POST" encType="multipart/form-data" >
+                                      <% data.forEach(function(res){
+                                            %>  
                                     <div class="card-body card-block">
-                                        <div class="form-group">
-                                            <label for="vat" class=" form-control-label">Service Category Name</label>
-                                            <input type="text" id="Service_ID" name="Service_ID" placeholder="<%=res.Name %>" value="<%=res.Service_ID%>" class="form-control">
+                                         <div class="form-group">
+                                            <label for="company" class=" form-control-label">Service Category</label>
+                                            <input type="text" name="serviceid" value="<%=res.Service_ID%>" disabled class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="vat" class=" form-control-label">Date/label>
-                                            <input type="text" id="servicedate" name="servicedate" value="<%=res.Date %>" class="form-control">
+                                            <label for="vat" class=" form-control-label">Date</label>
+                                            <input type="date" id="servicedate" name="servicedate" class="form-control" value="<%=res.Date%>">
                                         </div>
                                         <div class="form-group">
-                                            <label for="vat" class=" form-control-label">Description</label>
+                                            <label for="email" class=" form-control-label">Expense</label>
+                                            <input type="text" id="expense" name="expense" value="<%=res.Expense%>" class="form-control">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label for="street" class=" form-control-label">Description</label>
                                             <input type="text" id="description" name="description" value="<%=res.Description %>" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label for="vat" class=" form-control-label">Expense</label>
-                                            <input type="text" id="expense" name="expense" value="<%=res.Expense %>" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="vat" class=" form-control-label">Bill</label>
-                                            <input type="text" id="bill" name="bill" value="<%=res.Bill %>" class="form-control">
-                                        </div>
+                                            <label for="city" class=" form-control-label">Bill</label><br>
+                                            <img src="\<%=res.Bill %>" alt="Image" width=50% height="30%"><br><br>
+                                            <input type="file" id="sampleFile" name="sampleFile" class="form-control">
+                                        </div>    
                                         <input type="text" hidden id="sdid" name="sdid" value="<%=res.SD_ID %>" class="form-control">
                                         <div class="form-actions form-group">
                                                 <button type="submit" class="btn btn-primary btn-sm">Edit</button>
                                         </div>
-                                       
+                                       <% }) %>
                                     </form>
                                     </div>
                                     </div>

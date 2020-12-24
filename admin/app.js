@@ -3,12 +3,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-//mine
-var multer = require('multer');
-var bodyParser = require('body-parser');
-//mine
-
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var signinRouter = require('./routes/signin_route');
@@ -18,7 +12,12 @@ var addFlatRouter = require('./routes/flat_route');
 var addFlatmemberRouter = require('./routes/flatmember_route');
 var addApartmentRouter = require('./routes/apartment_route');
 var addFestival = require('./routes/festival_route');
-
+var remindernot = require('./routes/reminder_route');
+var fileUpload = require('express-fileupload');
+//------------------------------------------------User Area----------------------------------------
+var addComplaintsUser = require('./routes/complaints_route_User');
+var profile = require('./routes/profile_route_user');
+//------------------------------------------------/User Area---------------------------------------
 
 //------------------------------------------------User Area----------------------------------------
 var addComplaintsUser = require('./routes/complaints_route_User');
@@ -30,14 +29,14 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+app.use(fileUpload());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+global.id="";
 app.use(indexRouter);
 app.use(usersRouter);
 app.use(signinRouter);
@@ -47,6 +46,13 @@ app.use(addServiceDetailRoute);
 app.use(addFlatmemberRouter);
 app.use(addApartmentRouter);
 app.use(addFestival);
+app.use(remindernot);
+
+//------------------------------------------------User Area----------------------------------------
+app.use(addComplaintsUser);
+app.use(profile);
+//------------------------------------------------/User Area----------------------------------------
+
 
 //mine
 app.use(bodyParser.json())

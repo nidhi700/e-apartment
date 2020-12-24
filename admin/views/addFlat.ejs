@@ -16,11 +16,11 @@
                                     <div class="card-body card-block">     
                                         <div class="form-group">
                                             <label for="company" class=" form-control-label">Flat Number</label>
-                                            <input type="text"  name="flat_no" placeholder="Enter flat number" class="form-control">
+                                            <input type="text"  name="flat_no" placeholder="Enter flat number" class="form-control" title="Required" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="city" class=" form-control-label">BHK</label>
-                                            <input type="text" name="bhk" placeholder="Enter number of BHK" class="form-control">
+                                            <input type="text" name="bhk" placeholder="Enter number of BHK" pattern="[0-9]*" title="Only Number are allowed" required class="form-control">
                                         </div>                                    
                                         <div class="form-actions form-group">
                                             <button type="submit" class="btn btn-primary btn-sm">Add</button>

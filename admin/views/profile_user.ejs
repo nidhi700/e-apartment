@@ -10,10 +10,10 @@
                         <div class="row">                            
                             <div class="col-lg-12">
                                 <div class="card">
-                                    <div class="card-header">
-                                        <strong>ADD MEMBERS</strong>                                        
-                                    </div>
-                                    <form class="form-header" action="/insertMember" method="POST">
+
+                                    <form class="form-header" action="/updatePro" method="POST">
+                                        <% data.forEach(function(res){
+                                            %>
                                     <div class="card-body card-block">     
                                         <div class="form-group">
                                             <label for="company" class=" form-control-label">Flat Number</label>
@@ -21,11 +21,11 @@
                                         </div> 
                                         <div class="form-group">
                                             <label for="vat" class=" form-control-label">Full Name</label>
-                                            <input type="text" id="tenant_name" name="tenant_name" value="<%=res.Name %>" class="form-control">
+                                            <input type="text" id="tenant_name" name="tenant_name" value="<%=res.Name %>" class="form-control" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="email" class=" form-control-label">Email_ID</label>
-                                            <input type="text" id="email" name="email" value="<%=res.Login_ID %>" class="form-control">
+                                            <input type="email" id="email" name="email" value="<%=res.Login_ID %>" class="form-control" required title="Enter Proper format">
                                         </div> 
                                         <div class="form-group">
                                             <label for="street" class=" form-control-label">Number of Flat Members</label>
@@ -33,7 +33,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="city" class=" form-control-label">Contact Number</label>
-                                            <input type="text" id="t_contact" name="contact" value="<%=res.Contact_No %>" class="form-control">
+                                            <input type="text" id="t_contact" name="contact" value="<%=res.Contact_No %>" class="form-control" 
+                                            maxLength="10"
+                                            minLength="10"
+                                            pattern="[0-9]*"
+                                            title="Only Numbers are allowed">
                                         </div> 
                                         <div class="form-group">
                                                 <label for="select" class=" form-control-label">Role</label>                                                
@@ -41,7 +45,9 @@
                                         </div>                                   
                                         <div class="form-actions form-group">
                                                 <button type="submit" class="btn btn-primary btn-sm">Update</button>
-                                        </div></form>
+                                        </div>
+                                        <%})%>
+                                    </form>
                                     </div>
                                     </div>
                                 </div>
