@@ -32,19 +32,23 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="vat" class=" form-control-label">Full Name</label>
-                                            <input type="text" id="tenant_name" name="tenant_name" placeholder="Enter Full Name" class="form-control">
+                                            <input type="text" id="tenant_name" name="tenant_name" placeholder="Enter Full Name" class="form-control" title="Required * " required>
                                         </div>
                                         <div class="form-group">
                                             <label for="email" class=" form-control-label">Email_ID</label>
-                                            <input type="text" id="email" name="email" placeholder="Enter Email ID" class="form-control">
+                                            <input type="email" id="email" name="email" placeholder="Enter Email ID" class="form-control" required title="Plz enter proper format..">
                                         </div> 
                                         <div class="form-group">
                                             <label for="street" class=" form-control-label">Number of Flat Members</label>
-                                            <input type="text" id="t_flat_mem" name="flat_mem" placeholder="Enter total number of flat members" class="form-control">
+                                            <input type="text" id="t_flat_mem" name="flat_mem" placeholder="Enter total number of flat members" pattern="[0-9]*" title="Only Number are allowed" required class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label for="city" class=" form-control-label">Contact Number</label>
-                                            <input type="text" id="t_contact" name="contact" placeholder="Enter Contact Number" class="form-control">
+                                            <input type="text" id="t_contact" name="contact" placeholder="Enter Contact Number" class="form-control" maxLength="10"
+                                                            required
+                                                            pattern="[0-9]*"
+                                                            title="Only Numbers are allowed.."
+                                                            minLength="10">
                                         </div> 
                                         <div class="form-group">
                                                 <label for="select" class=" form-control-label">Role</label>                                                

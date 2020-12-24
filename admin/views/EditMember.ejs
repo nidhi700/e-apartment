@@ -63,15 +63,29 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="vat" class=" form-control-label">Full Name</label>
-                                            <input type="text" id="tenant_name" name="tenant_name" value="<%=res.Name %>" placeholder="Enter tenant name" class="form-control">
+                                            <input type="text" id="tenant_name" name="tenant_name" value="<%=res.Name %>" placeholder="Enter tenant name" class="form-control"
+                                            
+                                            required
+                                            pattern="[a-zA-Z]*"
+                                            title="Only Character are allowed.."
+                                            >
                                         </div>
                                         <div class="form-group">
                                             <label for="street" class=" form-control-label">Number of Flat Members</label>
-                                            <input type="text" id="t_flat_mem" name="t_flat_mem" value="<%=res.Flat_Members %>" placeholder="Enter total number of flat members" class="form-control">
+                                            <input type="text" id="t_flat_mem" name="t_flat_mem" value="<%=res.Flat_Members %>" placeholder="Enter total number of flat members" class="form-control"
+                                            required
+                                            pattern="[0-9]*"
+                                            title="Only Numbers are allowed..">
+                      
                                         </div>
                                         <div class="form-group">
                                             <label for="city" class=" form-control-label">Contact Number</label>
-                                            <input type="text" id="t_contact" name="t_contact" value="<%=res.Contact_No %>" placeholder="Enter Contact Number" class="form-control">
+                                            <input type="text" id="t_contact" name="t_contact" value="<%=res.Contact_No %>" placeholder="Enter Contact Number" class="form-control"
+                                            maxLength="10"
+                                            required
+                                            pattern="[0-9]*"
+                                            title="Only Numbers are allowed.."
+                                            minLength="10">
                                         </div> 
                                         <div class="form-group">
                                                 <label for="select" class=" form-control-label">Role</label>                                                

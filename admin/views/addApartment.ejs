@@ -16,23 +16,25 @@
                                     <div class="card-body card-block">     
                                         <div class="form-group">
                                             <label for="company" class=" form-control-label">Apartment Name</label>
-                                            <input type="text"  name="apt_name" placeholder="Enter Apartment Name" class="form-control">
+                                            <input type="text"  name="apt_name" placeholder="Enter Apartment Name" class="form-control"  pattern="[a-zA-Z]*"
+                                            title="Only Characters are allowed" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="city" class=" form-control-label">Lift Count</label>
-                                            <input type="text" name="lift_cnt" placeholder="Enter Lift Count" class="form-control">
+                                            <input type="text" name="lift_cnt" placeholder="Enter Lift Count" class="form-control" required
+                                            pattern="[0-9]*" title="Only Number are allowed">
                                         </div>                                        
                                         <div class="form-group">
                                             <label for="city" class=" form-control-label">Floor Count</label>
-                                            <input type="text" name="floor_cnt" placeholder="Enter Floor Count" class="form-control">
+                                            <input type="text" name="floor_cnt" placeholder="Enter Floor Count" class="form-control" pattern="[0-9]*" title="Only Number are allowed" required>
                                         </div>                        
                                         <div class="form-group">
                                             <label for="city" class=" form-control-label">Flat Count</label>
-                                            <input type="text" name="flat_cnt" placeholder="Enter Flat Count" class="form-control">
+                                            <input type="text" name="flat_cnt" placeholder="Enter Flat Count" class="form-control" pattern="[0-9]*" title="Only Number are allowed" required>
                                         </div>                        
                                         <div class="form-group">
                                             <label for="city" class=" form-control-label">Camera Count</label>
-                                            <input type="text" name="camera_cnt" placeholder="Enter Camera Count" class="form-control">
+                                            <input type="text" name="camera_cnt" placeholder="Enter Camera Count" class="form-control" pattern="[0-9]*" title="Only Number are allowed" required>
                                         </div>                                    
                                         <div class="form-actions form-group">
                                             <button type="submit" class="btn btn-primary btn-sm">Add</button>
