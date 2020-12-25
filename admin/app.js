@@ -55,7 +55,7 @@ app.use(profile);
 
 
 //mine
-app.use(bodyParser.json())
+//app.use(bodyParser.json())
 //mine
 
 //------------------------------------------------User Area----------------------------------------
