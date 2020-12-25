@@ -11,6 +11,11 @@ var addServiceDetailRoute = require('./routes/service_detail_route');
 var addFlatRouter = require('./routes/flat_route');
 var addFlatmemberRouter = require('./routes/flatmember_route');
 var addApartmentRouter = require('./routes/apartment_route');
+
+var FlatRouter = require('./routes/flat_route');
+var FlatmemberRouter = require('./routes/flatmember_route');
+var ApartmentRouter = require('./routes/apartment_route');
+
 var addFestival = require('./routes/festival_route');
 var remindernot = require('./routes/reminder_route');
 var fileUpload = require('express-fileupload');
@@ -45,28 +50,18 @@ app.use(addServiceCatRoute);
 app.use(addServiceDetailRoute);
 app.use(addFlatmemberRouter);
 app.use(addApartmentRouter);
+
+app.use(FlatRouter);
+app.use(FlatmemberRouter);
+app.use(ApartmentRouter);
+
 app.use(addFestival);
 app.use(remindernot);
 
 //------------------------------------------------User Area------------------------------------
 app.use(addComplaintsUser);
 app.use(profile);
-<<<<<<< HEAD
-//------------------------------------------------/User Area----------------------------------------
-
-
-//mine
-//app.use(bodyParser.json())
-//mine
-
-//------------------------------------------------User Area----------------------------------------
 app.use(addComplaintsUser);
-
-//------------------------------------------------/User Area----------------------------------------
-
-=======
-//------------------------------------------------/User Area------------------------------------
->>>>>>> 63026648761fd684214b5b88974eb31ad55f2aae
 
 
 // catch 404 and forward to error handler

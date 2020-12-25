@@ -102,6 +102,21 @@ router.get("/edit_member/:id?", (req, res, next) => {
 });
 
 
+      
+router.get('/updateflatdetail/:id?', function(req, res, next) {
+  // console.log(req.params.id);
+  flat.getFlat(req.params.id, function (err,rows){
+      if(err){
+        res.json(err);   
+        res.render('updateFlat',{data:rows});       
+      }
+      else{
+        res.render('updateFlat',{data:rows});       
+      }
+  })
+});
+  
+
  router.get('/apartment_detail', function(req, res, next) {
     //   res.render('Venue');
        apt.viewapartment(function(err,rows){
@@ -117,22 +132,51 @@ router.get("/edit_member/:id?", (req, res, next) => {
         });
       });
 
+router.get('/updateapartmentdetail/:id?', function(req, res, next) {
+  // res.render('Venue');
+  console.log(req.params.id);
+  apt.getApartment(req.params.id, function(err,rows){
+    //console.log("inside index");
+      if(err){
+        res.json(err);
+        res.render('updateApartment',{data:rows});
+      }
+      else{
+          // da=JSON.stringify(rows);
+          res.render('updateApartment',{data:rows});
+      }
+  });
+});
+
   router.get('/deleteflatmember/:id?', function(req, res, next) {
     // console.log(req.params.id);
     flatmember.deleteMember(req.params.id, (err,rows) => {
       console.log("inside delete");
         if(err){
           res.json(err);
-          alert("hi");
           res.redirect('/viewflatmembers');
         }
         else{
-           // da=JSON.stringify(rows);
             res.redirect('/viewflatmembers');
         }
     });
   });
   
+  router.get('/deleteapartment/:id?', function(req, res, next) {
+    console.log(req.params.id);
+    apt.deleteApartment(req.params.id, (err,rows) => {
+      console.log("inside delete");
+        if(err){
+          res.json(err);
+          res.redirect('/apartment_detail');
+        }
+        else{
+            res.redirect('/apartment_detail');
+        }
+    });
+  });
+
+
   router.get('/deletefestival/:id?', function(req, res, next) {
     // console.log(req.params.id);
     festival.deleteFestival(req.params.id, (err,rows) => {
@@ -148,20 +192,7 @@ router.get("/edit_member/:id?", (req, res, next) => {
     });
   });
 
-  router.get('/updateflatdetail', function(req, res, next) {
-    console.log("abc "+req.body.fno);
-    const fno = req.body.fno;    
-    flat.updateFlat1(function(fno,err,rows){
-        if(err){
-          res.json(err);   
-          res.render('updateFlat',{data:rows});       
-        }
-        else{
-          res.render('updateFlat',{data:rows});       
-        }
-    })
-  });
-      
+    
   router.get('/addApartment', function(req, res, next) {
     res.render('addApartment');
    // res.json(req.body);
