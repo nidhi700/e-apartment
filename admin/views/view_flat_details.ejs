@@ -31,12 +31,7 @@
                                                         <td><%=res.Flat_No %></td>   
                                                         <td><%=res.BHK %></td>
                                                         <td>
-                                                            <!-- Edited -->
-                                                            <form action="/updateflatdetail">
-                                                                <input type="hidden" name="fno" value="<%= res.Flat_No %>">
-                                                                <button class="au-btn--primary">Edit</button>
-                                                            </form>  
-                                                            <!-- //Edited -->
+                                                            <a href="/updateflatdetail/<%=res.Flat_No %>" data-toggle="tooltip" title="Update!"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                                         </td>
                                                     
                                                 </tr>                                                

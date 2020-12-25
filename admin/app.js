@@ -11,19 +11,18 @@ var addServiceDetailRoute = require('./routes/service_detail_route');
 var addFlatRouter = require('./routes/flat_route');
 var addFlatmemberRouter = require('./routes/flatmember_route');
 var addApartmentRouter = require('./routes/apartment_route');
+
+var FlatRouter = require('./routes/flat_route');
+var FlatmemberRouter = require('./routes/flatmember_route');
+var ApartmentRouter = require('./routes/apartment_route');
+
 var addFestival = require('./routes/festival_route');
 var remindernot = require('./routes/reminder_route');
 var fileUpload = require('express-fileupload');
-//------------------------------------------------User Area----------------------------------------
+//------------------------------------------------User Area------------------------------------
 var addComplaintsUser = require('./routes/complaints_route_User');
 var profile = require('./routes/profile_route_user');
-//------------------------------------------------/User Area---------------------------------------
-
-//------------------------------------------------User Area----------------------------------------
-var addComplaintsUser = require('./routes/complaints_route_User');
-
-//------------------------------------------------/User Area---------------------------------------
-
+//------------------------------------------------/User Area----------------------------------
 var app = express();
 
 // view engine setup
@@ -45,13 +44,18 @@ app.use(addServiceCatRoute);
 app.use(addServiceDetailRoute);
 app.use(addFlatmemberRouter);
 app.use(addApartmentRouter);
+
+app.use(FlatRouter);
+app.use(FlatmemberRouter);
+app.use(ApartmentRouter);
+
 app.use(addFestival);
 app.use(remindernot);
 
 //------------------------------------------------User Area------------------------------------
 app.use(addComplaintsUser);
 app.use(profile);
-//------------------------------------------------/User Area------------------------------------
+
 
 
 // catch 404 and forward to error handler

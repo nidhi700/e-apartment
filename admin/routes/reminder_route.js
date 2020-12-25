@@ -21,7 +21,8 @@ router.post("/reminder_notification", function (req, res, next) {
                 for (let i=0;i<row.length;i++) { 
                 
                 const to = row[i].Login_ID;
-                NODE_TLS_REJECT_UNAUTHORIZED='0'
+                console.log(to);
+                        NODE_TLS_REJECT_UNAUTHORIZED='0'
                 const subject = 'Reminder Notification..'
                 const message = '<h3> Only 1 Day Left'
                 const mailObj = {to,subject,message}

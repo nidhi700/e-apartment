@@ -36,8 +36,10 @@
                                                     <td class="text-right"><%=res.Floor_Count %></td>                                 
                                                     <td class="text-right"><%=res.Flat_Count %></td>                                 
                                                     <td class="text-right"><%=res.Camera_Count %></td> 
-<!-- Edited -->
-                                                    <td><a href="">Edit</a> &emsp; <a href="">Delete</a></td>                                
+                                                    <td>
+                                                        <a href="/deleteapartment/<%=res.Apt_Name %>" data-toggle="tooltip" title="Delete!"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;
+                                                        <a href="/updateapartmentdetail/<%=res.Apt_Name %>" data-toggle="tooltip" title="Update!"><i class="fa fa-pencil" aria-hidden="true"></i></a>  
+                                                    </td>
                                                     
                                                 </tr>
                                             </a>
