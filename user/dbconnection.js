@@ -1,10 +1,24 @@
+const { render } = require('ejs');
 var mysql=require('mysql');
-var connection=mysql.createPool({
- 
-host:'localhost',
- user:'root',
- password:'',
- database:'eapartment'
- 
+
+
+var connection=mysql.createConnection({
+    host:'localhost',
+    user:'root',
+    password:'',
+    database:'eapartment',
+    port: 3360
+
+    //port : 3360
+
 });
- module.exports=connection;
+
+connection.connect(function(err) {
+    if(err){
+    	throw err;
+    }else{
+        console.log("Connected!");
+    } 
+});
+
+module.exports=connection;
