@@ -12,6 +12,7 @@ var comp = require("../model/complaints_model");
 //var path = require('path');
 
 
+var Secretary = require("../model/change_secretary");
 //-----------------------------------User Side---------------------------------------------------
 var com = require("../model/complaints_model_user");
 var fest_user = require("../model/festival_model_user");
@@ -26,7 +27,15 @@ var da="";
 
 /* GET home page. */
 router.get('/index', function(req, res, next) {
-  res.render('index');
+  Secretary.getLogin((err, row) => {
+      if (err) {
+          res.json(err);
+          res.render('index',{data:row});
+      }
+      else {
+          res.render('index',{data:row});
+      }
+  });
 });
 router.get('/reminder',function(req, res, next) {
   res.render('reminder_notification');

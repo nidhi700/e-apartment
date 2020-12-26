@@ -1,9 +1,10 @@
 var db=require('../dbconnection');
 
-var item = {
-    getAllMail:function(callback) {    
-        return db.query("select * from member",callback);   
-    },
+var item1 = {
+    getAllMail:function (callback) {
+        console.log("In All Mail...");
+        return db.query('select Login_ID from member',callback);
+    }
 };
 
-module.exports = item;
+module.exports = item1;

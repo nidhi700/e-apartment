@@ -1,4 +1,6 @@
+const { render } = require('ejs');
 var mysql=require('mysql');
+
 
 var connection=mysql.createConnection({
     host:'localhost',
@@ -15,9 +17,8 @@ connection.connect(function(err) {
     if(err){
     	throw err;
     }else{
-    	console.log("Connected!");	
-    }    
+        console.log("Connected!");
+    } 
 });
-
 
 module.exports=connection;
