@@ -19,4 +19,5 @@ router.post("/updatePro", (req, res, next) => {
         }
     });
 });
+
 module.exports = router;

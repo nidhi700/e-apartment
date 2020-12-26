@@ -36,7 +36,15 @@ router.post("/", (req, res, next) => {
                 console.log(row[0].First_Login);
                 if(row[0].isSecretory==1)
                 {
-                    res.redirect('/index');
+                    if(row[0].First_Login==0)
+                    {
+                        res.render('changepassword',{data:row});
+                    }
+                    else
+                    {
+                        global.id1=row[0].Login_ID;
+                        res.redirect('/index');
+                    }
                 }
                 else if(row[0].isSecretory==0)
                 {

@@ -9,10 +9,14 @@ var service_cat = require("../model/service_cat_model");
 var service_detail = require("../model/service_detail_model");
 var comp = require("../model/complaints_model");
 
+//var path = require('path');
+
+
 //-----------------------------------User Side---------------------------------------------------
 var com = require("../model/complaints_model_user");
 var fest_user = require("../model/festival_model_user");
 var pro_user = require("../model/profile_model_user");
+var pro_admin = require("../model/profile_model_admin");
 //-----------------------------------/User Side---------------------------------------------------
 
 var db=require('../dbconnection');
@@ -337,6 +341,7 @@ router.get("/editServiceDetail/:id?", (req, res, next) => {
 
 
 
+
 //--------------------------------------------User Area-----------------------------------------
 
 
@@ -418,10 +423,31 @@ router.get("/profile_users", (req, res, next) => {
   });
 });
 
+router.get("/profile_admin", (req, res, next) => {
+  //var id="honeyshah@gmail.com";
+  pro_admin.viewadminprofile(global.id1,function(err,rows){
+  if(err){
+    res.json(err);
+  }
+  else{ 
+    obj = {
+      data: rows
+    }; 
+    res.render('profile_admin',obj);
+  }
+});
+});
+
 
 router.get('/index_user', function(req, res, next) {
   console.log("ab"+global.id);
   res.render('index_user');
+});
+
+
+router.get('/payMaintenance', function(req, res, next) {
+  console.log("ab"+global.id);
+  res.render('payMaintenance');
 });
 
 
@@ -430,5 +456,12 @@ router.get('/sidebar_user', function(req, res, next) {
   res.render('sidebar_user');
 });
 
+
+router.get('/paymentpage', (req, res) => {
+  res.sendFile('D:/e_appartment/admin/index.html');
+});
+router.get('/responsepage', (req, res) => {
+  res.render('response');
+});
 
 module.exports = router;
