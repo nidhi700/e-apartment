@@ -9,10 +9,14 @@ var service_cat = require("../model/service_cat_model");
 var service_detail = require("../model/service_detail_model");
 var comp = require("../model/complaints_model");
 
+//var path = require('path');
+
+
 //-----------------------------------User Side---------------------------------------------------
 var com = require("../model/complaints_model_user");
 var fest_user = require("../model/festival_model_user");
 var pro_user = require("../model/profile_model_user");
+var pro_admin = require("../model/profile_model_admin");
 //-----------------------------------/User Side---------------------------------------------------
 
 var db=require('../dbconnection');
@@ -102,6 +106,21 @@ router.get("/edit_member/:id?", (req, res, next) => {
 });
 
 
+      
+router.get('/updateflatdetail/:id?', function(req, res, next) {
+  // console.log(req.params.id);
+  flat.getFlat(req.params.id, function (err,rows){
+      if(err){
+        res.json(err);   
+        res.render('updateFlat',{data:rows});       
+      }
+      else{
+        res.render('updateFlat',{data:rows});       
+      }
+  })
+});
+  
+
  router.get('/apartment_detail', function(req, res, next) {
     //   res.render('Venue');
        apt.viewapartment(function(err,rows){
@@ -117,22 +136,51 @@ router.get("/edit_member/:id?", (req, res, next) => {
         });
       });
 
+router.get('/updateapartmentdetail/:id?', function(req, res, next) {
+  // res.render('Venue');
+  console.log(req.params.id);
+  apt.getApartment(req.params.id, function(err,rows){
+    //console.log("inside index");
+      if(err){
+        res.json(err);
+        res.render('updateApartment',{data:rows});
+      }
+      else{
+          // da=JSON.stringify(rows);
+          res.render('updateApartment',{data:rows});
+      }
+  });
+});
+
   router.get('/deleteflatmember/:id?', function(req, res, next) {
     // console.log(req.params.id);
     flatmember.deleteMember(req.params.id, (err,rows) => {
       console.log("inside delete");
         if(err){
           res.json(err);
-          alert("hi");
           res.redirect('/viewflatmembers');
         }
         else{
-           // da=JSON.stringify(rows);
             res.redirect('/viewflatmembers');
         }
     });
   });
   
+  router.get('/deleteapartment/:id?', function(req, res, next) {
+    console.log(req.params.id);
+    apt.deleteApartment(req.params.id, (err,rows) => {
+      console.log("inside delete");
+        if(err){
+          res.json(err);
+          res.redirect('/apartment_detail');
+        }
+        else{
+            res.redirect('/apartment_detail');
+        }
+    });
+  });
+
+
   router.get('/deletefestival/:id?', function(req, res, next) {
     // console.log(req.params.id);
     festival.deleteFestival(req.params.id, (err,rows) => {
@@ -148,20 +196,7 @@ router.get("/edit_member/:id?", (req, res, next) => {
     });
   });
 
-  router.get('/updateflatdetail', function(req, res, next) {
-    console.log("abc "+req.body.fno);
-    const fno = req.body.fno;    
-    flat.updateFlat1(function(fno,err,rows){
-        if(err){
-          res.json(err);   
-          res.render('updateFlat',{data:rows});       
-        }
-        else{
-          res.render('updateFlat',{data:rows});       
-        }
-    })
-  });
-      
+    
   router.get('/addApartment', function(req, res, next) {
     res.render('addApartment');
    // res.json(req.body);
@@ -275,7 +310,7 @@ router.get("/editServiceDetail/:id?", (req, res, next) => {
             data1=rows1;
             var obj={};
             obj.data=rows;
-            //obj.data1=data1;
+            obj.data1=data1;
             res.render('EditServiceDetails',obj);
           }
         });
@@ -302,6 +337,7 @@ router.get("/editServiceDetail/:id?", (req, res, next) => {
     res.render('sidebar');
    // res.json(req.body);
   });
+
 
 
 
@@ -387,10 +423,31 @@ router.get("/profile_users", (req, res, next) => {
   });
 });
 
+router.get("/profile_admin", (req, res, next) => {
+  //var id="honeyshah@gmail.com";
+  pro_admin.viewadminprofile(global.id1,function(err,rows){
+  if(err){
+    res.json(err);
+  }
+  else{ 
+    obj = {
+      data: rows
+    }; 
+    res.render('profile_admin',obj);
+  }
+});
+});
+
 
 router.get('/index_user', function(req, res, next) {
   console.log("ab"+global.id);
   res.render('index_user');
+});
+
+
+router.get('/payMaintenance', function(req, res, next) {
+  console.log("ab"+global.id);
+  res.render('payMaintenance');
 });
 
 
@@ -399,5 +456,12 @@ router.get('/sidebar_user', function(req, res, next) {
   res.render('sidebar_user');
 });
 
+
+router.get('/paymentpage', (req, res) => {
+  res.sendFile('D:/e_appartment/admin/index.html');
+});
+router.get('/responsepage', (req, res) => {
+  res.render('response');
+});
 
 module.exports = router;
