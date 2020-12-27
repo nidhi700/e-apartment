@@ -593,7 +593,7 @@ router.get('/paymentpage', (req, res) => {
         else {
             if (row) {
                     console.log("ans");                          
-                    res.sendFile('D:/Daiict/Sem_3/Project/e_appartment/admin/index.html');
+                    res.sendFile('D:/e_appartment/admin/index.html');
             }
             else {
                 console.log("Service Error");

@@ -56,7 +56,7 @@ router.post("/", (req, res, next) => {
                     else
                     {
                         global.id=row[0].Login_ID;
-                        res.redirect('/index_user');
+                        res.redirect('/viewcomp');
                     }
                 }
             }

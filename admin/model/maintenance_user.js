@@ -34,7 +34,7 @@ var item = {
     {
         console.log("in if id = "+id);
         
-        db.query('update maintenance SET Penalty=?,Status=? where Maintenance_ID=?',[200,"Paid",'32']);               
+        db.query('update maintenance SET Penalty=?,Status=? where Login_ID=?',[200,"Paid",id]);               
         return db.query("select * from society",callback);
     }
     else
