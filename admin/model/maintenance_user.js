@@ -32,11 +32,15 @@ var item = {
 
     if(Number(datetime.toISOString().slice(8,10))>=11)
     {
-        return db.query('insert into maintenance(Amount,Penalty,Status,Login_ID) values(?,?,?,?)',[7000,200,"Paid","201912046@daiict.ac.in"],callback);   
+        console.log("in if id = "+id);
+        
+        db.query('update maintenance SET Penalty=?,Status=? where Maintenance_ID=?',[200,"Paid",'32']);               
+        return db.query("select * from society",callback);
     }
     else
     {
-        return db.query('insert into maintenance(Amount,Penalty,Status,Login_ID) values(?,?,?,?)',[7000,0,"Paid","201912046@daiict.ac.in"],callback); 
+        console.log("in else id = "+id);
+        return db.query('update maintenance SET Status=? where Login_ID=?',["Paid",id],callback);
     }
     }
 };

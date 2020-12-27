@@ -4,14 +4,11 @@ var item={
     sendMail:function(demo,callback){   
         var transporter = nodemailer.createTransport({
             service: 'gmail',
-            auth: {
-              //  user: 'jvquestionpaper123@gmail.com',
-              //  pass: 'jvdaiict@123'
+            auth: {     
               user: 'patelvvj@gmail.com',
               pass: 'daiict@1234'
             }
-        });
-        
+        });        
         var mailOptions = {
             from: 'patelvvj@gmail.com',
             to: demo.to,
