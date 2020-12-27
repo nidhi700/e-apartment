@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var db=require('../dbconnection');
+
 var signin = require("../model/signin_model");
 var flat = require("../model/flat_model");
 var flatmember = require("../model/flatmember_model");
@@ -9,15 +11,21 @@ var service_cat = require("../model/service_cat_model");
 var service_detail = require("../model/service_detail_model");
 var comp = require("../model/complaints_model");
 
+var demo= require("../model/emailverify");
+var reminder = require("../model/reminder_model");
 //var path = require('path');
 
 
 var Secretary = require("../model/change_secretary");
+
 //-----------------------------------User Side---------------------------------------------------
 var com = require("../model/complaints_model_user");
 var fest_user = require("../model/festival_model_user");
 var pro_user = require("../model/profile_model_user");
+var maintenance=require("../model/maintenance_model");
 var pro_admin = require("../model/profile_model_admin");
+var fund = require("../model/Fund_User");
+var maintenance1 = require("../model/maintenance_user");
 //-----------------------------------/User Side---------------------------------------------------
 
 var db=require('../dbconnection');
@@ -37,16 +45,116 @@ router.get('/index', function(req, res, next) {
       }
   });
 });
-router.get('/reminder',function(req, res, next) {
-  res.render('reminder_notification');
+
+
+router.get("/reminder",function(req, res, next) {
+  let ts = Date.now();
+  let date = new Date(ts);
+            maintenance.getPendingEmail(function (err, row) {
+
+                if (err) {
+                    console.log('Error');
+                }
+                else
+                {
+                    var numrows = row.length;
+                    if (numrows == 0) {
+                        console.log('not');
+                    }
+                    else
+                    {
+                        for (let i=0;i<row.length;i++) { 
+                        
+                        const to = row[i].Login_ID;
+                        console.log(to);
+                        NODE_TLS_REJECT_UNAUTHORIZED='0'
+                        const subject = 'Reminder for Maintenance'
+                        const message = '<h3> Your Maintenance is not paid yet....!!!</h3>'
+                
+                       const mailObj = {to,subject,message}
+                        demo.sendMail(mailObj)
+                        }
+                    }
+                }        
+            });
+        
+  res.render('maintenance_detail');
 });
+
 router.get("/", function(req, res, next) {
-  res.render('Login');
+let ts = Date.now();
+        let date = new Date(ts);
+        if(date.getDate()==27)
+        {
+          db.query("select Login_ID from member",(function(err,rows)
+          {
+            console.log(rows[0].Login_ID);
+              maintenance.addmaintenance(rows,(err,row)=>{
+                if(err)
+                {
+                  res.render('Login');
+                }
+                else
+                {
+                      res.render('Login'); 
+                }
+              })
+
+           
+          }));
+          
+        
+      }
+        /*if(date.getDate() >= 26){
+            console.log("grater 28..");
+            reminder.getAllMail(function (err, row) {
+                if (err) {
+                    console.log('Error');
+                }
+                else
+                {
+                    var numrows = row.length;
+                    if (numrows == 0) {
+                        console.log('not');
+                    }
+                    else
+                    {
+                        for (let i=0;i<row.length;i++) { 
+                        
+                        const to = row[i].Login_ID;
+                        console.log(to);
+                        NODE_TLS_REJECT_UNAUTHORIZED='0'
+                        const subject = 'Reminder for Maintenance'
+                        const message = '<h3>Please Pay Your maintenence amount for next upcoming month Before 10th day of next month'
+                
+                       const mailObj = {to,subject,message}
+                        demo.sendMail(mailObj)
+                        }
+                    }
+                }        
+            });
+        }*/
+  //res.render('Login');
 });
+
 router.get('/addflat', function(req, res, next) {
   res.render('addFlat');
 });
-  
+
+router.get('/maintenance_detail',(req, res, next) =>{
+  maintenance.viewmaintenance(function(err,rows){
+    console.log("inside index");
+      if(err){
+        res.json(err);
+        res.render('maintenance_detail',{data:rows});
+      }
+      else{
+         // da=JSON.stringify(rows);
+          res.render('maintenance_detail',{data:rows});
+      }
+  });
+});
+
 router.get('/addmember',(req, res, next) => {
     flatmember.getFlatNo((err, row) => {
         if (err) {
@@ -456,7 +564,16 @@ router.get('/index_user', function(req, res, next) {
 
 router.get('/payMaintenance', function(req, res, next) {
   console.log("ab"+global.id);
-  res.render('payMaintenance');
+  fund.viewamount(function(err,rows){
+    if(err){
+      res.json(err);
+      res.render('payMaintenance',{data:rows});
+    }
+    else{
+      res.render('payMaintenance',{data:rows});
+    }
+  });
+  //res.render('');
 });
 
 
@@ -467,8 +584,26 @@ router.get('/sidebar_user', function(req, res, next) {
 
 
 router.get('/paymentpage', (req, res) => {
-  res.sendFile('D:/e_appartment/admin/index.html');
+
+  maintenance1.addmaintenance(global.id, (err, row) => {
+        if (err) {
+            res.send(err);
+            console.log("err");
+        }
+        else {
+            if (row) {
+                    console.log("ans");                          
+                    res.sendFile('D:/Daiict/Sem_3/Project/e_appartment/admin/index.html');
+            }
+            else {
+                console.log("Service Error");
+                res.send(err);
+          }
+        }
+    }); 
 });
+
+  //res.render('Login');
 router.get('/responsepage', (req, res) => {
   res.render('response');
 });
