@@ -9,6 +9,10 @@ var item = {
         return db.query("select member_id from maintenance where status='pending'",callback);   
 
     },
+    Addpenalty:function(callback){
+         db.query("update maintenance set Penalty=? where status='pending'",[200]);
+         return db.query("select * from maintenance",callback);
+    },
     addmaintenance:function(item,callback)
     {
         

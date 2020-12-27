@@ -9,26 +9,17 @@ var apt = require("../model/apartment_model");
 var festival = require("../model/festival_model");
 var service_cat = require("../model/service_cat_model");
 var service_detail = require("../model/service_detail_model");
+
 var comp = require("../model/complaints_model");
-<<<<<<< HEAD
 var demo= require("../model/emailverify");
 var reminder = require("../model/reminder_model");
-=======
-
-//var path = require('path');
-
-
-var Secretary = require("../model/change_secretary");
->>>>>>> 9caef4ceff95345012afd353807aa2d44883c1c7
 //-----------------------------------User Side---------------------------------------------------
 var com = require("../model/complaints_model_user");
 var fest_user = require("../model/festival_model_user");
 var pro_user = require("../model/profile_model_user");
-<<<<<<< HEAD
 var maintenance=require("../model/maintenance_model");
-=======
-var pro_admin = require("../model/profile_model_admin");
->>>>>>> 9caef4ceff95345012afd353807aa2d44883c1c7
+var Secretary = require("../model/change_secretary");
+
 //-----------------------------------/User Side---------------------------------------------------
 
 var db=require('../dbconnection');
@@ -39,20 +30,22 @@ var da="";
 /* GET home page. */
 router.get('/index', function(req, res, next) {
   Secretary.getLogin((err, row) => {
-      if (err) {
-          res.json(err);
-          res.render('index',{data:row});
-      }
-      else {
-          res.render('index',{data:row});
-      }
-  });
+    if (err) {
+        res.json(err);
+        res.render('index',{data:row});
+    }
+    else {
+        res.render('index',{data:row});
+    }
+});
 });
 
 
 router.get("/reminder",function(req, res, next) {
   let ts = Date.now();
   let date = new Date(ts);
+            if(date.getDate()>=1 && date.getDate()<10)
+            {
             maintenance.getPendingEmail(function (err, row) {
 
                 if (err) {
@@ -72,7 +65,7 @@ router.get("/reminder",function(req, res, next) {
                         console.log(to);
                         NODE_TLS_REJECT_UNAUTHORIZED='0'
                         const subject = 'Reminder for Maintenance'
-                        const message = '<h3> Your Maintenance is not paid yet....!!!</h3>'
+                        const message = '<h3> Your Maintenance is not paid yet...After 10th you will be !!!</h3>'
                 
                        const mailObj = {to,subject,message}
                         demo.sendMail(mailObj)
@@ -80,8 +73,43 @@ router.get("/reminder",function(req, res, next) {
                     }
                 }        
             });
-        
-  res.render('maintenance_detail');
+            }
+            else if(date.getDate()>=26)
+            {
+
+              maintenance.Addpenalty(function(err, row,next) {
+
+                if (err) {
+                    console.log('Error');
+                }
+                else
+                {
+                    var numrows = row.length;
+                    if (numrows == 0) {
+                        console.log('not');
+                    }
+                    else
+                    {
+                        for (let i=0;i<row.length;i++) { 
+                        
+                        const to = row[i].Login_ID;
+                        var penalty=row[i].Penalty;
+                        var amount=row[i].Amount;
+                        console.log(to);
+                        NODE_TLS_REJECT_UNAUTHORIZED='0'
+                        const subject = 'Reminder for Penalty add into your amount'
+                        const message = `<h1>Penalty Amount </h1> <h2> Penalty : ${penalty} <br/> Total Maintenance : ${penalty+amount} </h2>`;                       const mailObj = {to,subject,message}
+                        demo.sendMail(mailObj)
+                        }
+                    }
+                }    
+                 res.render('maintenance_detail',{data:row});
+    
+            });
+             // res.render('maintenance_detail',{data:row});
+
+            }
+ // res.render('maintenance_detail',{data:row});
 });
 router.get("/", function(req, res, next) {
 let ts = Date.now();
@@ -107,7 +135,7 @@ let ts = Date.now();
           
         
       }
-        /*if(date.getDate() >= 26){
+        if(date.getDate() >= 26){
             console.log("grater 28..");
             reminder.getAllMail(function (err, row) {
                 if (err) {
@@ -135,7 +163,7 @@ let ts = Date.now();
                     }
                 }        
             });
-        }*/
+        }
   //res.render('Login');
 });
 router.get('/addflat', function(req, res, next) {
@@ -428,7 +456,7 @@ router.get("/editServiceDetail/:id?", (req, res, next) => {
             data1=rows1;
             var obj={};
             obj.data=rows;
-            obj.data1=data1;
+            //obj.data1=data1;
             res.render('EditServiceDetails',obj);
           }
         });
@@ -455,7 +483,6 @@ router.get("/editServiceDetail/:id?", (req, res, next) => {
     res.render('sidebar');
    // res.json(req.body);
   });
-
 
 
 
@@ -541,31 +568,10 @@ router.get("/profile_users", (req, res, next) => {
   });
 });
 
-router.get("/profile_admin", (req, res, next) => {
-  //var id="honeyshah@gmail.com";
-  pro_admin.viewadminprofile(global.id1,function(err,rows){
-  if(err){
-    res.json(err);
-  }
-  else{ 
-    obj = {
-      data: rows
-    }; 
-    res.render('profile_admin',obj);
-  }
-});
-});
-
 
 router.get('/index_user', function(req, res, next) {
   console.log("ab"+global.id);
   res.render('index_user');
-});
-
-
-router.get('/payMaintenance', function(req, res, next) {
-  console.log("ab"+global.id);
-  res.render('payMaintenance');
 });
 
 
@@ -574,12 +580,5 @@ router.get('/sidebar_user', function(req, res, next) {
   res.render('sidebar_user');
 });
 
-
-router.get('/paymentpage', (req, res) => {
-  res.sendFile('D:/e_appartment/admin/index.html');
-});
-router.get('/responsepage', (req, res) => {
-  res.render('response');
-});
 
 module.exports = router;

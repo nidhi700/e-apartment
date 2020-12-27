@@ -11,12 +11,9 @@ var addServiceDetailRoute = require('./routes/service_detail_route');
 var addFlatRouter = require('./routes/flat_route');
 var addFlatmemberRouter = require('./routes/flatmember_route');
 var addApartmentRouter = require('./routes/apartment_route');
-<<<<<<< HEAD
 var maintenance=require('./routes/maintenance');
-=======
 var Secretary = require("./routes/secretory_route");
 
->>>>>>> 9caef4ceff95345012afd353807aa2d44883c1c7
 var FlatRouter = require('./routes/flat_route');
 var FlatmemberRouter = require('./routes/flatmember_route');
 var ApartmentRouter = require('./routes/apartment_route');
