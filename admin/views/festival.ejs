@@ -15,7 +15,6 @@
                                     <table class="table table-borderless table-striped table-earning">
                                         <thead>
                                             <tr>
-                                                <th>sr no</th>
                                                 <th>Festival Name</th>
                                                 <th>Action</th>                
                                             </tr>
@@ -27,7 +26,6 @@
                                             data.forEach(function(res){
                                             %>
                                                 <tr>
-                                                    <td><%= res.Festival_ID %></td>
                                                     <td><%= res.Name %></td>
                     
                                                     <td><a href="/deletefestival/<%=res.Festival_ID %>" data-toggle="tooltip" title="Delete!"><i class="fa fa-trash" aria-hidden="true"></i></a>

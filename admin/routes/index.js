@@ -563,7 +563,6 @@ router.get('/service_detail_user', function(req, res, next) {
 
 
 router.get("/profile_users", (req, res, next) => {
-    //var id="honeyshah@gmail.com";
     pro_user.viewprofile(global.id,function(err,rows){
     if(err){
       res.json(err);
@@ -614,8 +613,9 @@ router.get('/paymentpage', (req, res) => {
         }
         else {
             if (row) {
-                    console.log("ans");                          
-                    res.sendFile('D:/e_appartment/admin/index.html');
+                    console.log("ans"); 
+                                             
+                    res.sendFile('E:/EC_DSS_Project/e-apartment-master/admin/index.html');
             }
             else {
                 console.log("Service Error");

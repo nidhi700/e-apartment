@@ -11,7 +11,7 @@ router.post("/insertServiceDetail", (req, res, next) => {
   }
 
   sampleFile = req.files.sampleFile;
-  let uploadPath = 'D:/e_appartment/admin/public/images/' + sampleFile.name;
+  let uploadPath = 'E:/EC_DSS_Project/e-apartment-master/admin/public/images/' + sampleFile.name;
   sampleFile.mv(uploadPath, function(err) {
     if (err)
       return res.status(500).send(err);
@@ -45,7 +45,7 @@ router.post("/updateServiceDetail1", (req, res, next) => {
   }
 
   sampleFile = req.files.sampleFile;
-  let uploadPath = 'D:/e_appartment/admin/public/images/' + sampleFile.name;
+  let uploadPath = 'E:/EC_DSS_Project/e-apartment-master/admin/public/images/' + sampleFile.name;
   sampleFile.mv(uploadPath, function(err) {
     if (err)
       return res.status(500).send(err);
