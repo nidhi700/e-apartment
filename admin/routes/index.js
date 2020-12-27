@@ -8,6 +8,7 @@ var festival = require("../model/festival_model");
 var service_cat = require("../model/service_cat_model");
 var service_detail = require("../model/service_detail_model");
 var comp = require("../model/complaints_model");
+var reminder=require("../model/reminder_model");
 
 //var path = require('path');
 
@@ -18,6 +19,8 @@ var com = require("../model/complaints_model_user");
 var fest_user = require("../model/festival_model_user");
 var pro_user = require("../model/profile_model_user");
 var pro_admin = require("../model/profile_model_admin");
+var fund = require("../model/Fund_User");
+var maintenance1 = require("../model/maintenance_user");
 //-----------------------------------/User Side---------------------------------------------------
 
 var db=require('../dbconnection');
@@ -40,9 +43,7 @@ router.get('/index', function(req, res, next) {
 router.get('/reminder',function(req, res, next) {
   res.render('reminder_notification');
 });
-router.get("/", function(req, res, next) {
-  res.render('Login');
-});
+
 router.get('/addflat', function(req, res, next) {
   res.render('addFlat');
 });
@@ -456,7 +457,16 @@ router.get('/index_user', function(req, res, next) {
 
 router.get('/payMaintenance', function(req, res, next) {
   console.log("ab"+global.id);
-  res.render('payMaintenance');
+  fund.viewamount(function(err,rows){
+    if(err){
+      res.json(err);
+      res.render('payMaintenance',{data:rows});
+    }
+    else{
+      res.render('payMaintenance',{data:rows});
+    }
+  });
+  //res.render('');
 });
 
 
@@ -467,8 +477,26 @@ router.get('/sidebar_user', function(req, res, next) {
 
 
 router.get('/paymentpage', (req, res) => {
-  res.sendFile('D:/e_appartment/admin/index.html');
+
+  maintenance1.addmaintenance(global.id, (err, row) => {
+        if (err) {
+            res.send(err);
+            console.log("err");
+        }
+        else {
+            if (row) {
+                    console.log("ans");                          
+                    res.sendFile('D:/e_appartment/admin/index.html');
+            }
+            else {
+                console.log("Service Error");
+                res.send(err);
+          }
+        }
+    }); 
 });
+
+  //res.render('Login');
 router.get('/responsepage', (req, res) => {
   res.render('response');
 });

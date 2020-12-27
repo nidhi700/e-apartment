@@ -16,10 +16,15 @@
                                     <div class="card-body card-block">                                             
                                         <div class="form-group">
                                             <label for="city" class=" form-control-label">Maintenance Amount</label>
-                                            <input type="text" name="category_name" class="form-control" value="2000" readonly>
+                                            <% data.forEach(function(res){
+                                            %>
+                                            <input type="text" name="maintenance_amount" class="form-control" value="<%=res.Maintenance%>" readonly>
                                         </div>                                    
+                                        
+
                                         <div class="form-actions form-group">
                                             <a href="paymentpage"><button class="btn btn-primary btn-sm">Pay</button></a>
+                                            <%})%>
                                         </div></form>
                                     </div>
                                     </div>
