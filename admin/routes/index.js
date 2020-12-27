@@ -11,15 +11,22 @@ var service_cat = require("../model/service_cat_model");
 var service_detail = require("../model/service_detail_model");
 
 var comp = require("../model/complaints_model");
+
 var demo= require("../model/emailverify");
 var reminder = require("../model/reminder_model");
+//var path = require('path');
+
+
+var Secretary = require("../model/change_secretary");
+
 //-----------------------------------User Side---------------------------------------------------
 var com = require("../model/complaints_model_user");
 var fest_user = require("../model/festival_model_user");
 var pro_user = require("../model/profile_model_user");
 var maintenance=require("../model/maintenance_model");
-var Secretary = require("../model/change_secretary");
-
+var pro_admin = require("../model/profile_model_admin");
+var fund = require("../model/Fund_User");
+var maintenance1 = require("../model/maintenance_user");
 //-----------------------------------/User Side---------------------------------------------------
 
 var db=require('../dbconnection');
@@ -111,6 +118,7 @@ router.get("/reminder",function(req, res, next) {
             }
  // res.render('maintenance_detail',{data:row});
 });
+
 router.get("/", function(req, res, next) {
 let ts = Date.now();
         let date = new Date(ts);
@@ -166,6 +174,7 @@ let ts = Date.now();
         }
   //res.render('Login');
 });
+
 router.get('/addflat', function(req, res, next) {
   res.render('addFlat');
 });
@@ -575,10 +584,50 @@ router.get('/index_user', function(req, res, next) {
 });
 
 
+router.get('/payMaintenance', function(req, res, next) {
+  console.log("ab"+global.id);
+  fund.viewamount(function(err,rows){
+    if(err){
+      res.json(err);
+      res.render('payMaintenance',{data:rows});
+    }
+    else{
+      res.render('payMaintenance',{data:rows});
+    }
+  });
+  //res.render('');
+});
+
+
 router.get('/sidebar_user', function(req, res, next) {
 
   res.render('sidebar_user');
 });
 
+
+router.get('/paymentpage', (req, res) => {
+
+  maintenance1.addmaintenance(global.id, (err, row) => {
+        if (err) {
+            res.send(err);
+            console.log("err");
+        }
+        else {
+            if (row) {
+                    console.log("ans");                          
+                    res.sendFile('D:/Daiict/Sem_3/Project/e_appartment/admin/index.html');
+            }
+            else {
+                console.log("Service Error");
+                res.send(err);
+          }
+        }
+    }); 
+});
+
+  //res.render('Login');
+router.get('/responsepage', (req, res) => {
+  res.render('response');
+});
 
 module.exports = router;
