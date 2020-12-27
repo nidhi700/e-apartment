@@ -11,7 +11,7 @@ var addServiceDetailRoute = require('./routes/service_detail_route');
 var addFlatRouter = require('./routes/flat_route');
 var addFlatmemberRouter = require('./routes/flatmember_route');
 var addApartmentRouter = require('./routes/apartment_route');
-
+var maintenance=require('./routes/maintenance');
 var FlatRouter = require('./routes/flat_route');
 var FlatmemberRouter = require('./routes/flatmember_route');
 var ApartmentRouter = require('./routes/apartment_route');
@@ -50,6 +50,7 @@ app.use(addServiceCatRoute);
 app.use(addServiceDetailRoute);
 app.use(addFlatmemberRouter);
 app.use(addApartmentRouter);
+app.use(maintenance);
 
 app.use(FlatRouter);
 app.use(FlatmemberRouter);
