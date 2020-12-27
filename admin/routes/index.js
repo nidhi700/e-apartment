@@ -10,13 +10,25 @@ var festival = require("../model/festival_model");
 var service_cat = require("../model/service_cat_model");
 var service_detail = require("../model/service_detail_model");
 var comp = require("../model/complaints_model");
+<<<<<<< HEAD
 var demo= require("../model/emailverify");
 var reminder = require("../model/reminder_model");
+=======
+
+//var path = require('path');
+
+
+var Secretary = require("../model/change_secretary");
+>>>>>>> 9caef4ceff95345012afd353807aa2d44883c1c7
 //-----------------------------------User Side---------------------------------------------------
 var com = require("../model/complaints_model_user");
 var fest_user = require("../model/festival_model_user");
 var pro_user = require("../model/profile_model_user");
+<<<<<<< HEAD
 var maintenance=require("../model/maintenance_model");
+=======
+var pro_admin = require("../model/profile_model_admin");
+>>>>>>> 9caef4ceff95345012afd353807aa2d44883c1c7
 //-----------------------------------/User Side---------------------------------------------------
 
 var db=require('../dbconnection');
@@ -26,7 +38,15 @@ var da="";
 
 /* GET home page. */
 router.get('/index', function(req, res, next) {
-  res.render('index');
+  Secretary.getLogin((err, row) => {
+      if (err) {
+          res.json(err);
+          res.render('index',{data:row});
+      }
+      else {
+          res.render('index',{data:row});
+      }
+  });
 });
 
 
@@ -408,7 +428,7 @@ router.get("/editServiceDetail/:id?", (req, res, next) => {
             data1=rows1;
             var obj={};
             obj.data=rows;
-            //obj.data1=data1;
+            obj.data1=data1;
             res.render('EditServiceDetails',obj);
           }
         });
@@ -435,6 +455,7 @@ router.get("/editServiceDetail/:id?", (req, res, next) => {
     res.render('sidebar');
    // res.json(req.body);
   });
+
 
 
 
@@ -520,10 +541,31 @@ router.get("/profile_users", (req, res, next) => {
   });
 });
 
+router.get("/profile_admin", (req, res, next) => {
+  //var id="honeyshah@gmail.com";
+  pro_admin.viewadminprofile(global.id1,function(err,rows){
+  if(err){
+    res.json(err);
+  }
+  else{ 
+    obj = {
+      data: rows
+    }; 
+    res.render('profile_admin',obj);
+  }
+});
+});
+
 
 router.get('/index_user', function(req, res, next) {
   console.log("ab"+global.id);
   res.render('index_user');
+});
+
+
+router.get('/payMaintenance', function(req, res, next) {
+  console.log("ab"+global.id);
+  res.render('payMaintenance');
 });
 
 
@@ -532,5 +574,12 @@ router.get('/sidebar_user', function(req, res, next) {
   res.render('sidebar_user');
 });
 
+
+router.get('/paymentpage', (req, res) => {
+  res.sendFile('D:/e_appartment/admin/index.html');
+});
+router.get('/responsepage', (req, res) => {
+  res.render('response');
+});
 
 module.exports = router;

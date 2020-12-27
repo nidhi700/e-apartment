@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<body class="animsition">
+    <%- include('sidebar_user'); %>
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">                            
+                            <div class="col-lg-12">
+                                <div class="card">
+
+                                    <form class="form-header" action="/updatePro" method="POST">
+                                        <% data.forEach(function(res){
+                                            %>
+                                    <div class="card-body card-block">     
+                                        <div class="form-group">
+                                            <label for="company" class=" form-control-label">Flat Number</label>
+                                            <input type="text" id="Flat_No" name="Flat_No" value="<%=res.Flat_No %>" class="form-control" readonly>
+                                        </div> 
+                                        <div class="form-group">
+                                            <label for="vat" class=" form-control-label">Full Name</label>
+                                            <input type="text" id="tenant_name" name="tenant_name" value="<%=res.Name %>" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email" class=" form-control-label">Email_ID</label>
+                                            <input type="email" id="email" name="email" value="<%=res.Login_ID %>" class="form-control" required title="Enter Proper format">
+                                        </div> 
+                                        <div class="form-group">
+                                            <label for="street" class=" form-control-label">Number of Flat Members</label>
+                                            <input type="text" id="t_flat_mem" name="flat_mem" value="<%=res.Flat_Members %>" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="city" class=" form-control-label">Contact Number</label>
+                                            <input type="text" id="t_contact" name="contact" value="<%=res.Contact_No %>" class="form-control" 
+                                            maxLength="10"
+                                            minLength="10"
+                                            pattern="[0-9]*"
+                                            title="Only Numbers are allowed">
+                                        </div> 
+                                        <div class="form-group">
+                                                <label for="select" class=" form-control-label">Role</label>                                                
+                                                <input type="text" id="t_contact" name="role" value="<%=res.Role %>" class="form-control">
+                                        </div>                                   
+                                        <div class="form-actions form-group">
+                                                <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                                        </div>
+                                        <%})%>
+                                    </form>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="vendor/slick/slick.min.js">
+    </script>
+    <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/animsition/animsition.min.js"></script>
+    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="vendor/select2/select2.min.js">
+    </script>
+
+    <!-- Main JS-->
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
+<!-- end document-->
